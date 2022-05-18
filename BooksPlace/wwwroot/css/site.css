@@ -1,0 +1,131 @@
+﻿*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(171, 152, 110);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkslategray;
+    border-radius: 200px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #1d2b2b;
+}
+
+body {
+    background-color: rgba(176, 115, 115, 0.6);
+}
+
+.Navbar{
+    background-color:rgb(53, 51, 51);
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    position:relative;
+}
+
+.Navbar-Brand{
+    color: white;
+    position:absolute;
+    top: 30%;
+    left: 10px;
+    font-size: 20px;
+}
+
+.Navbar-Search {
+    width: 40%;
+    height: 50%;
+    margin-top: 2vh;
+    border-radius: 10px;
+    background-color: dimgray;
+    color: white;
+    font-family: 'Times New Roman';
+}
+
+input[type=text], textarea {
+    outline: none;
+    border: 1px solid dimgray;
+}
+
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px dimgray;
+  border: 1px solid #1d2b2b;
+}
+
+.Navbar-Search::placeholder { 
+    color: rgb(209, 209, 209);
+}
+
+.Navigation-Menu-Container {
+    background-color: rgb(53, 51, 51);
+    color: white;
+    border: 1px solid rgba(156, 147, 147, 0.68);
+    width: 12vw;
+    height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.Navigation-Menu-Container > p{
+    text-align:center;
+    margin-top:5px;
+}
+
+.Navigation-Menu {
+    width: 10vw;
+    text-align: center;
+    margin:15px 10px 10px 10px;
+}
+
+.Navigation-Menu a{
+    color: whitesmoke;
+    background-color: dimgray;
+    display: block;
+    padding: 15px;
+    border: 2px solid #1d2b2b;
+    text-decoration: none;
+}
+
+.Products-Body{
+    background-color:rgb(75, 71, 71);
+    width:86vw;
+    height:86vh;
+    position: absolute;
+    top:12vh;
+    left:13vw;
+    border-radius:5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.Product-Grid{
+   margin:15px 0px 0px 70px;
+}
+
+.Product-Grid > ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 3rem;
+}
+
+.Product-Grid-Button{
+    background-color:rgb(176, 115, 115);
+    color:rgb(221, 221, 221);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    text-decoration:none;
+    display:block;
+    width:50%;
+    height:30%;
+}

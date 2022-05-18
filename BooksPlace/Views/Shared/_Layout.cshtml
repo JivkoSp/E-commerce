@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/site.css" rel="stylesheet">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="Navbar">
+        <span class="Navbar-Brand"><strong>BooksPlace</strong></span>
+        <input class="Navbar-Search" type="text" placeholder="Search some books..."/>
+    </div>
+    <div class="Navigation-Menu-Container">
+        <p>Book <br /> categories</p>
+        <div class="Navigation-Menu">
+            <vc:navigation-menu />
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
