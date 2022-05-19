@@ -1,5 +1,9 @@
+using BooksPlace.Data;
+using BooksPlace.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,13 @@ namespace BooksPlace
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDbContext<BooksPlaceDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("BooksPlaceDbConnection"));
+            });
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+
+            }).AddEntityFrameworkStores<BooksPlaceDbContext>();
         }
 
       
@@ -43,8 +54,6 @@ namespace BooksPlace
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("ProductInfo", "Page{number:int}", 
-                    new { });
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });

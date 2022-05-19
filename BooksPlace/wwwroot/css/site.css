@@ -22,7 +22,7 @@
 }
 
 body {
-    background-color: rgba(176, 115, 115, 0.6);
+    background-color: rgba(210, 255, 0, 0.3);
 }
 
 .Navbar{
@@ -117,10 +117,11 @@ input[type=text]:focus, textarea:focus {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 3rem;
+    color: white;
 }
 
 .Product-Grid-Button{
-    background-color:rgb(176, 115, 115);
+    background-color:rgba(210, 255, 0, 0.3);
     color:rgb(221, 221, 221);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
