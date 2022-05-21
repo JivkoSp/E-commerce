@@ -8,25 +8,18 @@ namespace BooksPlace.Data.Repository.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private BooksPlaceDbContext Context { get; }
-        private UserRepository _User;
+        private BooksPlaceDbContext dbContext;
+        public IProductRepo Product { get; private set; }
 
-        public UnitOfWork(BooksPlaceDbContext dbContext)
+        public UnitOfWork(BooksPlaceDbContext dbContext, IProductRepo product)
         {
-            Context = dbContext;
-            _User = new UserRepository(Context);
-        }
-
-        public IUserRepository User => _User;
-
-        public void Dispose()
-        {
-            Context.Dispose();
+            this.dbContext = dbContext;
+            Product = product;
         }
 
         public void SaveChanges()
         {
-            Context.SaveChanges();
+            dbContext.SaveChanges();
         }
     }
 }

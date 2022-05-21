@@ -1,4 +1,5 @@
 using BooksPlace.Data;
+using BooksPlace.ExtensionMethods;
 using BooksPlace.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,7 @@ namespace BooksPlace
             {
 
             }).AddEntityFrameworkStores<BooksPlaceDbContext>();
+            services.AddRepository();
         }
 
       

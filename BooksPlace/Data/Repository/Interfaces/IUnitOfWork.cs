@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace BooksPlace.Data.Repository.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
-        IUserRepository User { get; }
+        IProductRepo Product { get; }
         void SaveChanges();
     }
 }
