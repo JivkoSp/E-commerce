@@ -45,5 +45,10 @@ namespace BooksPlace.Data.Repository
 
             return products;
         }
+
+        public Product GetProduct(int id)
+        {
+            return BooksPlaceDbContext.Products.Find(id);
+        }
     }
 }

@@ -159,6 +159,12 @@ namespace BooksPlace.Data
 
                 entity.ToTable("Review");
 
+                entity.Property(p => p.ReviewImage)
+                .HasColumnType("image");
+
+                entity.Property(p => p.DateTime)
+                .HasColumnType("datetime2");
+
                 entity.HasOne(p => p.Product)
                 .WithMany(p => p.Reviews)
                 .HasForeignKey(p => p.ProductId)
@@ -177,6 +183,12 @@ namespace BooksPlace.Data
 
                 entity.Property(p => p.DateTime)
                 .HasColumnType("datetime2");
+
+                entity.HasOne(p => p.User)
+                .WithMany(p => p.ReviewComments)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_ReviewComment_User");
 
                 entity.HasOne(p => p.Review)
                 .WithMany(p => p.ReviewComments)

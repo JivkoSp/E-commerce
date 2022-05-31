@@ -4,14 +4,16 @@ using BooksPlace.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BooksPlace.Migrations
 {
     [DbContext(typeof(BooksPlaceDbContext))]
-    partial class BooksPlaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220523174929_Review-ReviewComment-update")]
+    partial class ReviewReviewCommentupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,9 +203,6 @@ namespace BooksPlace.Migrations
 
                     b.Property<string>("ReviewContent")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("ReviewImage")
-                        .HasColumnType("image");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");

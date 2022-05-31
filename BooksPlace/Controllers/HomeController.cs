@@ -1,5 +1,6 @@
 ﻿using BooksPlace.Data.Repository.Interfaces;
 using BooksPlace.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BooksPlace.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private int pageSize = 19;

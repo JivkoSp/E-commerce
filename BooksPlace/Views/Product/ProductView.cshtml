@@ -1,0 +1,308 @@
+﻿@model ProductInformationViewModel
+
+<div class="Products-Information-Body">
+    <div class="Products-Information-Body-Title">
+        Some title
+    </div>
+    <div class="Products-Information-Body-Description">
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
+        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
+        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
+        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
+        jsdfjsdlkfjsdlf
+    </div>
+    <div class="Products-Information-Body-Button-Container">
+        <button>Ask the web</button>
+        <button>Add to cart</button>
+    </div>
+</div>
+
+<div id="Review" class="Products-Information-Review">
+
+    <div id="Review-Banner-Head" class="Review-Banner-Head">
+        @Model.Product.ProductName Reviews
+    </div>
+    <div id="Review-Banner-Body" class="Review-Banner-Body">
+        <p>See what others think of this book</p>
+        <p>or</p>
+        <p>Write your own review</p>
+    </div>
+
+    <form asp-controller="Product" asp-action="PostReview" asp-route-ProductId="@Model.Product.ProductId" 
+          method="post" enctype="multipart/form-data">
+
+        <div id="CreateReviewContainer" class="CreateReviewContainer">
+
+            <label id="CreateReview-Picture-Container" class="CreateReview-Picture">
+                <span>Add picture</span>
+                <input id="CreateReview-Picture" name="PictureFile" type="file" accept=".jpg, .jpeg, .png" />
+            </label>
+            <div class="CreateReview-Head">
+                <div class="CreateReview-Head-Author">Author:  @ViewContext.HttpContext.User.Identity.Name</div>
+                <div class="CreateReview-Head-Date"> Date:  @DateTime.Now.ToString("dd/MM/yyyy")</div>
+            </div>
+
+            <div class="CreateReview-Body">
+                <textarea name="ReviewContent"></textarea>
+            </div>
+
+
+            <div class="CreateReview-Foot">
+                <button type="submit" class="CreateReview-Btn">Save</button>
+                <button class="CreateReview-Btn">Delete</button>
+                <a asp-controller="Product" asp-action="ProductView"
+                   asp-route-productId="@Model.Product.ProductId" class="CreateReview-Btn">Back</a>
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <div class="Products-Information-Review-Btns-Container">
+        <button id="WriteReview" class="Products-Information-Review-Btns">Write review</button>
+        <button id="SeeReviews" class="Products-Information-Review-Btns">See reviews</button>
+    </div>
+   
+</div>
+
+<div class="Products-Information-Suggestions">
+
+</div>
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+         function get_ProductsInformationReview() {
+
+            let element = document.getElementById("Review");
+
+            document.getElementById("Review-Banner-Head").style.display = "none";
+            document.getElementById("Review-Banner-Body").style.display = "none";
+            document.getElementById("WriteReview").style.display = "none";
+            document.getElementById("SeeReviews").style.display = "none";
+
+            element.style.width = "84%";
+            element.style.height = "85%";
+            element.style.zIndex = "1";
+
+            return element;
+        }
+
+        document.getElementById("WriteReview").addEventListener('click', () => {
+
+            get_ProductsInformationReview();
+            document.getElementById("CreateReviewContainer").style.display = "block";
+        });
+
+        function validFileType(file) {
+
+            const fileTypes = [
+                "image/apng",
+                "image/bmp",
+                "image/gif",
+                "image/jpeg",
+                "image/pjpeg",
+                "image/png",
+                "image/svg+xml",
+                "image/tiff",
+                "image/webp",
+                "image/x-icon"
+            ];
+
+            return fileTypes.includes(file.type);
+        }
+
+        document.getElementById("CreateReview-Picture").addEventListener('change', () => {
+
+            let selectedFile = document.getElementById("CreateReview-Picture").files;
+
+            console.log(selectedFile[0]);
+
+            if (selectedFile.length > 0 && validFileType(selectedFile[0])) {
+
+                const image = document.createElement('img');
+                image.style.position = "absolute";
+                image.style.width = "100%";
+                image.style.height = "100%";
+                image.src = URL.createObjectURL(selectedFile[0]);
+                document.getElementById("CreateReview-Picture-Container").appendChild(image);
+            }
+        });
+
+
+        function insertReviewInfo() {
+
+            @if (Model.Reviews.Any())
+            {
+                @:let element = document.getElementById("Review");
+
+                @foreach (var review in Model.Reviews)
+                {
+                   @:element.innerHTML += `<div class="Review-Columns">
+                            @:<div class="Review-Columns-col1">
+                                @:<div class="Review-Columns-col1-Head"></div>
+                                @:<div class="Review-Columns-col1-Body">
+                                @:<div class="CreateReview-Picture">
+                                @:<img src="data:image/jpeg;base64,@Convert.ToBase64String(review.ReviewImage)">
+                                @:</img>
+                                @:</div>
+                                @:<div class="Review-Columns-col1-Body-Content">@review.ReviewContent</div>
+                                @:</div>
+                            @:</div>
+                        @:<div class="Review-Columns-col2">
+                            @:<div id="Comment-Container-Parent-@review.ReviewId" class="Review-Columns-col2-Comment-Container-Parent">
+
+                                  @foreach (var comment in review.ReviewComments)
+                                  {
+                                    @:<div class="Review-Columns-col2-Comment-Container">
+                                      @:<div class="Comment-Container-Head">@comment.DateTime.ToString("dd/MM/yyyy")</div>
+                                      @:<div class="Comment-Container-Body">@comment.Comment</div>
+                                      @:<div class="Comment-Container-Foot">Likes: @comment.Likes</div>
+                                      @:<div class="Comment-Container-Foot-Responce-Container">Responces
+                                         @:<div class="Comment-Container-Foot-Responce">
+                                            @foreach(var responce in comment.ReviewComments)
+                                            {
+                                                @:<div class="Comment-Container-Head">@responce.DateTime.ToString("dd/MM/yyyy")</div>
+                                                @:<div class="Comment-Container-Body">@responce.Comment</div>
+                                                @:<div class="Comment-Container-Foot">Likes: @responce.Likes</div>
+                                            }
+                                          @:<input type="text" /> <button>Comment</button>
+                                        @:</div>
+                                      @:</div>
+                                    @:</div>
+                                  }
+
+                            @:</div>
+
+                            @:<input type="text" class="Container-AddComment" />
+                            @:<input type="hidden" class="ReviewId" value="@review.ReviewId" />
+                            @:<button class="AddComment-Btn">Comment</button>
+
+                      @:</div>
+                   @:</div>`;
+                 }
+            }
+        }
+
+        document.getElementById("SeeReviews").addEventListener('click', () => {
+
+            get_ProductsInformationReview();
+            insertReviewInfo();
+
+            let AddComments = document.getElementsByClassName("Container-AddComment");
+            let ReviewIds = document.getElementsByClassName("ReviewId");
+            let AddCommentBtns = document.getElementsByClassName("AddComment-Btn");
+
+            for (let i = 0; i < AddCommentBtns.length; i++) {
+
+                AddCommentBtns[i].addEventListener('click', () => {
+
+                    let comment = AddComments[i].value;
+                    let reviewId = ReviewIds[i].value;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Product/PostComment',
+                        data: {
+                            "comment": comment,
+                            "reviewId": reviewId
+                        },
+                        success: function (response) {
+                            console.log("comment send", response);
+                        },
+                        failure: function (response) {
+                            console.log("Fail", response);
+                        },
+                        error: function (response) {
+                            console.log("Error", response);
+                        }
+                    });
+                });
+            }
+        });
+
+        setInterval(function () {
+
+            $.ajax({
+                type: 'GET',
+                url: '/Product/GetComment',
+                data: {},
+                success: function (response) {
+
+                    console.log("pulled new comment", response);
+
+                    if (response != null)
+                    {
+                        let commentContainer = document.createElement("div");
+                        let commentHead = document.createElement("div");
+                        let commentBody = document.createElement("div");
+                        let commentFoot = document.createElement("div");
+
+                        commentHead.setAttribute("class", "Comment-Container-Head");
+                        commentBody.setAttribute("class", "Comment-Container-Body");
+                        commentFoot.setAttribute("class", "Comment-Container-Foot");
+                        commentContainer.setAttribute("class", "Review-Columns-col2-Comment-Container");
+
+                        commentHead.innerHTML = response.dateTime;
+                        commentBody.innerHTML = response.comment;
+                        commentFoot.innerHTML = "Likes: "+response.likes;
+
+                        commentContainer.appendChild(commentHead);
+                        commentContainer.appendChild(commentBody);
+                        commentContainer.appendChild(commentFoot);
+
+                        document.getElementById("Comment-Container-Parent-" + response.reviewId).appendChild(commentContainer);
+                    }
+                },
+                failure: function (response) {
+                    console.log("Fail", response);
+                },
+                error: function (response) {
+                    console.log("Error", response);
+                }
+            });
+
+            console.log("pulling data..");
+
+        }, 5000);
+    });
+
+</script>

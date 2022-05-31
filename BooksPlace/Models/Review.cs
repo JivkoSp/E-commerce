@@ -13,6 +13,9 @@ namespace BooksPlace.Models
         }
 
         public int ReviewId { get; set; }
+        public string ReviewContent { get; set; }
+        public byte[] ReviewImage { get; set; }
+        public DateTime DateTime { get; set; }
         public string UserId { get; set; }
         public int ProductId { get; set; }
         public virtual User User { get; set; }

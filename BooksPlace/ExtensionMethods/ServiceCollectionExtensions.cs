@@ -1,8 +1,11 @@
-﻿using BooksPlace.Data.Repository;
+﻿using BooksPlace.Data.RabbitConnection;
+using BooksPlace.Data.Repository;
 using BooksPlace.Data.Repository.GenericRepo;
 using BooksPlace.Data.Repository.Interfaces;
 using BooksPlace.Data.Repository.UnitOfWork;
+using BooksPlace.MessageBroker;
 using Microsoft.Extensions.DependencyInjection;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +19,15 @@ namespace BooksPlace.ExtensionMethods
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductRepo, ProductRepo>();
+            services.AddScoped<IReviewRepo, ReviewRepo>();
+            services.AddScoped<IReviewCommentRepo, ReviewCommentRepo>();
+        }
+
+
+        public static void AddRabbitMq(this IServiceCollection services)
+        {
+            services.AddSingleton<IBooksPlaceConnectionFactory, BooksPlaceConnectionFactory>();
+            services.AddSingleton<RabbitMqHub>();
         }
     }
 }

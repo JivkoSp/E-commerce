@@ -1,5 +1,6 @@
 using BooksPlace.Data;
 using BooksPlace.ExtensionMethods;
+using BooksPlace.MessageBroker;
 using BooksPlace.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +12,9 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Westwind.AspNetCore.LiveReload;
 
 namespace BooksPlace
 {
@@ -33,9 +36,27 @@ namespace BooksPlace
             });
             services.AddIdentity<User, IdentityRole>(options =>
             {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.SignIn.RequireConfirmedAccount = true;
 
             }).AddEntityFrameworkStores<BooksPlaceDbContext>();
+            services.ConfigureApplicationCookie(options => {
+
+                options.Cookie.Name = "UserAuthCookie";
+                options.LoginPath = "/Login/SignIn";
+                options.LogoutPath = "";
+                options.AccessDeniedPath = "/Login/AccessDenied";
+            
+            });
             services.AddRepository();
+            services.AddControllers().AddJsonOptions(options => 
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            services.AddRabbitMq();
+            services.AddLiveReload();
         }
 
       
@@ -50,9 +71,11 @@ namespace BooksPlace
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseLiveReload();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseRouting();
-
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

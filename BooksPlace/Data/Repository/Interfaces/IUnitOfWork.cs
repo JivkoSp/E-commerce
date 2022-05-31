@@ -8,6 +8,8 @@ namespace BooksPlace.Data.Repository.Interfaces
     public interface IUnitOfWork
     {
         IProductRepo Product { get; }
+        IReviewRepo Review { get; }
+        IReviewCommentRepo ReviewComment { get; }
         void SaveChanges();
     }
 }

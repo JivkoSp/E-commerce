@@ -4,14 +4,16 @@ using BooksPlace.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BooksPlace.Migrations
 {
     [DbContext(typeof(BooksPlaceDbContext))]
-    partial class BooksPlaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220522103052_ReviewCommentUpdate-2")]
+    partial class ReviewCommentUpdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,17 +195,8 @@ namespace BooksPlace.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ReviewContent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("ReviewImage")
-                        .HasColumnType("image");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -239,16 +232,11 @@ namespace BooksPlace.Migrations
                     b.Property<int>("ReviewId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("ReviewCommentId");
 
                     b.HasIndex("CommentId");
 
                     b.HasIndex("ReviewId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ReviewComment");
                 });
@@ -565,17 +553,9 @@ namespace BooksPlace.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BooksPlace.Models.User", "User")
-                        .WithMany("ReviewComments")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("FK_ReviewComment_User")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.Navigation("ParentComment");
 
                     b.Navigation("Review");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BooksPlace.Models.User", b =>
@@ -685,8 +665,6 @@ namespace BooksPlace.Migrations
             modelBuilder.Entity("BooksPlace.Models.User", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("ReviewComments");
 
                     b.Navigation("Reviews");
                 });

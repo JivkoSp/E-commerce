@@ -11,5 +11,6 @@ namespace BooksPlace.Data.Repository.Interfaces
         IEnumerable<ProductCategory> GetProductCategories();
         IEnumerable<Product> GetViewProducts(string productCategory, int pageNumber, int pageSize);
         IEnumerable<Product> GetProducts(string productCategory);
+        Product GetProduct(int id);
     }
 }
