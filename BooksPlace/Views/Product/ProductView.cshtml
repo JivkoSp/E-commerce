@@ -47,8 +47,21 @@
         jsdfjsdlkfjsdlf
     </div>
     <div class="Products-Information-Body-Button-Container">
-        <button>Ask the web</button>
-        <button>Add to cart</button>
+
+        <form method="post">
+            <button type="submit" id="SearchWeb"
+                    class="Products-Information-Body-Button-Container-Btns">Ask the web</button>
+        </form>
+
+        <form asp-controller="Product" asp-action="AddToCart" method="post">
+            <input type="hidden" asp-for="Product.ProductId" />
+            <input type="hidden" asp-for="Product.ProductName" />
+            <input type="hidden" asp-for="Product.ProductPrice" />
+            <input type="hidden" asp-for="Product.ProductDescription" />
+            <button type="submit" id="AddToCart"
+                   class="Products-Information-Body-Button-Container-Btns">Add to cart</button>
+        </form>
+
     </div>
 </div>
 

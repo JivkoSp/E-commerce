@@ -1,4 +1,5 @@
 ﻿using BooksPlace.Data.Repository.Interfaces;
+using BooksPlace.ExtensionMethods;
 using BooksPlace.MessageBroker;
 using BooksPlace.Models;
 using BooksPlace.Models.ViewModels;
@@ -102,6 +103,16 @@ namespace BooksPlace.Controllers
         public JsonResult GetComment()
         {
             return new JsonResult(mqHub.Pull(User.Identity.Name));
+        }
+
+        [HttpPost]
+        public IActionResult AddToCart(Product product, int quantity=1)
+        {
+            var cart = HttpContext.Session.GetFromSession<Cart>("userCart") ?? new Cart();
+            cart.AddItem(product, quantity);
+            HttpContext.Session.AddToSession<Cart>("userCart", cart);
+
+            return RedirectToAction("ProductView", new { productId = product.ProductId });
         }
     }
 }

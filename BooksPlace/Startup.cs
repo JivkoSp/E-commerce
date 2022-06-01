@@ -4,6 +4,7 @@ using BooksPlace.MessageBroker;
 using BooksPlace.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -56,6 +57,12 @@ namespace BooksPlace
             services.AddControllers().AddJsonOptions(options => 
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddRabbitMq();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.Cookie.Name = "UserCartCookie";
+                options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
             services.AddLiveReload();
         }
 
@@ -74,6 +81,7 @@ namespace BooksPlace
             app.UseLiveReload();
             app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
 
