@@ -219,7 +219,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Products-Information-Body-Button-Container-Btns{
-    margin: 5% 5% 0% 2%;
+    margin: 5% 5% 0% 5%;
     padding: 2%;
     font-size:100%;
     color:white;
@@ -227,9 +227,17 @@ input[type=text]:focus, textarea:focus {
     background-color:#292a2a;
 }
 
-.Products-Information-Body-Button-Container-Btns:hover{
-   border: 2px solid #1d2b2b;
-   box-shadow: 0 0 5px black;
+#SearchWeb.Products-Information-Body-Button-Container-Btns:hover {
+    background-color: rgb(43, 47, 125);
+    border: 2px solid darkblue;
+    box-shadow: 0 0 5px darkblue;
+}
+
+#AddToCart.Products-Information-Body-Button-Container-Btns:hover {
+    color: black;
+    background-color: rgb(131, 117, 13);
+    border: 2px solid darkgreen;
+    box-shadow: 0 0 5px darkgreen;
 }
 
 .Products-Information-Suggestions {
@@ -528,4 +536,229 @@ input[type="file"] {
 
 .Comment-Container-Foot-Responce-Container:hover .Comment-Container-Foot-Responce{
     display:block;
+}
+
+.CartInformation {
+    position: absolute;
+    top: 28%;
+    right: 15%;
+    height: 45%;
+    width: 8%;
+    min-width: 80px;
+    font-size: 80%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 0.5em;
+    color: whitesmoke;
+    background-color: rgb(75, 71, 71);
+    transition: all 0.5s linear;
+}
+
+.CartInformation:hover {
+    border: 1.5px solid green;
+    box-shadow: 0 0 3px green;
+    color:black;
+    font-size: 85%;
+    background-color:green;
+}
+
+.UserCartTitle {
+    position: absolute;
+    top:3%;
+    left:20%;
+    font-size:2em;
+    font-style:italic;
+    font-family:'Agency FB';
+}
+
+.Cart-Items-Container {
+    width: 70%;
+    height: 50%;
+    min-width:500px;
+    position:absolute;
+    top:10%;
+    left:15%;
+    overflow-y:auto;
+    overflow-x:hidden;
+    color: whitesmoke;
+    background-color: rgb(53, 51, 51);
+}
+
+.Cart-Item{
+    width:90%;
+    height:40%;
+    margin:1% 2% 1% 5%;
+    position:relative;
+    background-color:rgb(60, 60, 60);
+}
+
+.Cart-Item-Picture{
+
+}
+
+.Cart-Item-Desc{
+    position:absolute;
+    top:8%;
+    left:15%;
+    width:40%;
+    height:70%;
+    word-wrap:break-word;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background-color:dimgrey;
+}
+
+.Cart-Item-Quantity {
+    position: absolute;
+    top: 12%;
+    left: 52%;
+    margin-left:2.5em;
+}
+
+.Cart-Item-Quantity input {
+    width: 50%;
+    height: 20%;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding:1%;
+    font-size:80%;
+    text-align:center;
+    color:whitesmoke;
+    background-color:dimgrey;
+    border: 1px solid dimgrey;
+}
+
+.Cart-Item-Quantity input:focus {
+    outline: 0;
+}
+
+.Cart-Item-Remove {
+    position: absolute;
+    top: 13.5%;
+    left: 55%;
+    margin-left: 8em;
+    width: 1.5em;
+    height: 1.6em;
+    color: whitesmoke;
+    background-color: dimgray;
+    border-color: black;
+    transition: all 0.2s linear;
+}
+
+.Cart-Item-Remove:hover{
+    color:rgb(240, 40, 50);
+}
+
+.Cart-Item-Price {
+    position: absolute;
+    top: 13.5%;
+    left: 57%;
+    margin-left: 9em;
+}
+
+.Cart-Items-Price-Tags {
+    position: absolute;
+    top: 62%;
+    left: 15%;
+    height: 5%;
+    width: 70%;
+    display:flex;
+}
+
+.Price-Tag {
+    position: relative;
+    height: 100%;
+    width: 25%;
+    margin: 0 2% 0 0;
+    font-size: 80%;
+    color: whitesmoke;
+    background-color: rgb(53, 51, 51);
+}
+
+.Price-Tag-Content{
+    position:absolute;
+    margin:0.7em 2em 0 1em;
+    font-size:110%;
+}
+
+.Cart-Checkout-Discount-Container {
+    position: absolute;
+    top: 70%;
+    left: 15%;
+    height: 6%;
+    width: 40%;
+    display: flex;
+}
+
+.Cart-Checkout-Discount-Container input{
+  width:25vw;
+  height:4.5vh;
+  margin: 0.6em 1em 0 0.5em;
+  color:white;
+  background-color:dimgray;
+}
+
+.Cart-Checkout-Discount-Container button{
+    position:absolute;
+    margin-top:0.6em;
+    width:25%;
+    right:10%;
+}
+
+.Cart-Checkout-Container {
+    position: absolute;
+    top: 70.5%;
+    left: 54%;
+    height: 20%;
+    width: 10vw;
+    min-width:170px;
+}
+
+.Cart-Checkout-Container button{
+    position:absolute;
+    width:70%;
+    left:25%;
+    margin-top:0.5em;
+}
+
+.Checkout-Menu{
+    position:absolute;
+    top:32%;
+    width:120%;
+    height:65%;
+    padding-left:15px;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
+}
+
+.Checkout-Menu a {
+    display: block;
+    margin-top:0.5em;
+    padding:2%;
+    width:90%;
+    font-size:90%;
+    text-align:center;
+    text-decoration:none;
+    border-style:solid;
+    border-width:thin;
+    background-color:rgb(235, 208, 208);
+}
+
+.Checkout-Menu a:hover{
+    color:whitesmoke;
+    background-color:#1d2b2b;
+    border-width:medium;
+    border-color:black;
+}
+
+.Checkout-Tag {
+    padding:0.5em;
+    color: whitesmoke;
+    background-color: rgb(17, 18, 67);
+    border-color: rgb(17, 18, 67);
 }

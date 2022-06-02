@@ -31,10 +31,13 @@ namespace BooksPlace
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddRazorPages();
+
             services.AddDbContext<BooksPlaceDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("BooksPlaceDbConnection"));
             });
+
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 4;
@@ -45,6 +48,7 @@ namespace BooksPlace
                 options.SignIn.RequireConfirmedAccount = true;
 
             }).AddEntityFrameworkStores<BooksPlaceDbContext>();
+
             services.ConfigureApplicationCookie(options => {
 
                 options.Cookie.Name = "UserAuthCookie";
@@ -53,16 +57,24 @@ namespace BooksPlace
                 options.AccessDeniedPath = "/Login/AccessDenied";
             
             });
+
             services.AddRepository();
+
             services.AddControllers().AddJsonOptions(options => 
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
             services.AddRabbitMq();
+
             services.AddDistributedMemoryCache();
+
             services.AddSession(options => {
                 options.Cookie.Name = "UserCartCookie";
                 options.Cookie.IsEssential = true;
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+
+            services.AddAntiforgery(config => config.HeaderName = "XSRF-TOKEN");
+
             services.AddLiveReload();
         }
 

@@ -40,6 +40,36 @@ namespace BooksPlace.Models
                 Console.WriteLine(ex.Message);
             }
         }
+        
+        public void UpdateItem(int productId, int quantity)
+        {
+            try
+            {
+                var cartItem = CartItems.FirstOrDefault(i => i.Product.ProductId == productId);
+
+                cartItem.Quantity = quantity;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void DeleteItem(int productId)
+        {
+            try
+            {
+                var cartItem = CartItems.FirstOrDefault(i => i.Product.ProductId == productId);
+                CartItems.Remove(cartItem);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        public decimal TotalPrice => CartItems.Sum(i => i.Product.ProductPrice * i.Quantity);
 
     }
 }

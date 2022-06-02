@@ -53,7 +53,7 @@
                     class="Products-Information-Body-Button-Container-Btns">Ask the web</button>
         </form>
 
-        <form asp-controller="Product" asp-action="AddToCart" method="post">
+        <form asp-page="/Cart/Cart" asp-page-handler="AddToCart" method="post">
             <input type="hidden" asp-for="Product.ProductId" />
             <input type="hidden" asp-for="Product.ProductName" />
             <input type="hidden" asp-for="Product.ProductPrice" />

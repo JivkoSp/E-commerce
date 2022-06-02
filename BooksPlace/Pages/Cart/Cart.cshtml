@@ -1,0 +1,133 @@
+﻿@page
+@model BooksPlace.Pages.Cart.CartModel
+
+<div class="UserCartTitle">
+    @ViewContext.HttpContext.User.Identity.Name's Cart
+</div>
+
+<div class="Cart-Items-Container">
+    @foreach (var item in Model.Cart.CartItems)
+    {
+        <div class="Cart-Item">
+            <div class="Cart-Item-Picture">
+
+            </div>
+            <div class="Cart-Item-Desc">
+                <input type="hidden" value="@item.Product.ProductId" class="ProductId" />
+                <h4>@item.Product.ProductName</h4>
+                @item.Product.ProductDescription
+            </div>
+            <div class="Cart-Item-Quantity">
+                <input type="number" min="1" step="1" value="@item.Quantity" class="SetQuantity">
+            </div>
+            <button class="Cart-Item-Remove">
+                X
+            </button>
+            <div class="Cart-Item-Price">
+                @item.Product.ProductPrice.ToString("c")
+            </div>
+        </div>
+    }
+</div>
+
+<div class="Cart-Items-Price-Tags">
+    <div class="Price-Tag">
+        <div class="Price-Tag-Content">
+            Discount:
+        </div>
+    </div>
+    <div class="Price-Tag">
+        <div id="TotalPrice" class="Price-Tag-Content">
+            Total: @Model.Cart.TotalPrice.ToString("c")
+        </div>
+    </div>
+</div>
+
+<div class="Cart-Checkout-Discount-Container">
+    <form method="post">
+        <input type="text" />
+        <button type="submit" class="Checkout-Tag">Apply Discount</button>
+    </form>
+</div>
+
+<div class="Cart-Checkout-Container">
+    <form method="post">
+        <button type="submit" class="Checkout-Tag">Checkout</button>
+    </form>
+    <div class="Checkout-Menu">
+        <a asp-controller="Home">Continue Shopping and reading reviews</a>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        let productIds = document.getElementsByClassName("ProductId");
+        let quantityes = document.getElementsByClassName("SetQuantity");
+
+   
+        for (let i = 0; i < quantityes.length; i++) {
+
+            quantityes[i].addEventListener('click', () => {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/Cart?handler=UpdateQuantity',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: {
+                        "productId": productIds[i].value,
+                        "quantity": quantityes[i].value
+                    },
+                    success: function (response) {
+
+                        document.getElementById("TotalPrice").innerHTML = "Total: "
+                            + response.totalPrice.toFixed(2)+" лв.";
+
+                    },
+                    failure: function (response) {
+                        console.log("Fail", response);
+                    },
+                    error: function (response) {
+                        console.log("Error", response);
+                    }
+                });
+
+            });
+        }
+
+        let RemoveItems = document.getElementsByClassName("Cart-Item-Remove");
+
+        for (let i = 0; i < RemoveItems.length; i++) {
+
+            RemoveItems[i].addEventListener('click', () => {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/Cart?handler=DeleteItem',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: {
+                        "productId": productIds[i].value
+                    },
+                    success: function (response) {
+                        window.location.replace(response.redirectUrl);
+                    },
+                    failure: function (response) {
+                        console.log("Fail", response);
+                    },
+                    error: function (response) {
+                        console.log("Error", response);
+                    }
+                });
+            });
+        }
+
+    });
+
+</script>
