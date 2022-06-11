@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +19,7 @@ namespace BooksPlace.Models
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
         public decimal ProductPrice { get; set; }
+        public byte[] ProductImage { get; set; }
         public int ProductCategoryId { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual PriceOffer PriceOffer { get; set; }

@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model ProductViewModel
+
+
+<div class="Products-Body-Admin">
+    <div class="Product-Grid">
+
+        <ul>
+            @foreach (var product in Model.Products)
+            {
+            <li>
+                <div class="Product-Grid-Image">
+                    @if (product.ProductImage != null && product.ProductImage.Length > 0)
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(product.ProductImage)">
+                    }
+                </div>
+                <h3>@product.ProductName</h3>
+                <p>Price: @product.ProductPrice.ToString("c")</p>
+                <a asp-controller="Admin" asp-action="EditProduct"
+                   asp-route-productId="@product.ProductId" class="Product-Grid-Button">Edit</a>
+            </li>
+            }
+        </ul>
+
+    </div>
+</div>
+
+<div class="Products-Body-PageButton-Container">
+    <div page-model="@Model.PageInfo" action-method="Catalog_Products" page-classes-enabled="true"
+         page-class="Products-Body-PageButton" page-class-selected="Products-Body-PageButton-Selected">
+    </div>
+</div>

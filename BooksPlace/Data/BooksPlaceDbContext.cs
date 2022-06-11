@@ -90,6 +90,9 @@ namespace BooksPlace.Data
                 .HasColumnType("decimal(8, 2)")
                 .IsRequired();
 
+                entity.Property(p => p.ProductImage)
+                .HasColumnType("image");
+
                 entity.HasOne(p => p.ProductCategory)
                 .WithMany(p => p.Products)
                 .HasForeignKey(p => p.ProductCategoryId)

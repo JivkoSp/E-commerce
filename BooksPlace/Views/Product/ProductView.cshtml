@@ -50,7 +50,9 @@
 
         <form method="post">
             <button type="submit" id="SearchWeb"
-                    class="Products-Information-Body-Button-Container-Btns">Ask the web</button>
+                    class="Products-Information-Body-Button-Container-Btns">
+                Ask the web
+            </button>
         </form>
 
         <form asp-page="/Cart/Cart" asp-page-handler="AddToCart" method="post">
@@ -59,7 +61,9 @@
             <input type="hidden" asp-for="Product.ProductPrice" />
             <input type="hidden" asp-for="Product.ProductDescription" />
             <button type="submit" id="AddToCart"
-                   class="Products-Information-Body-Button-Container-Btns">Add to cart</button>
+                    class="Products-Information-Body-Button-Container-Btns">
+                Add to cart
+            </button>
         </form>
 
     </div>
@@ -76,7 +80,7 @@
         <p>Write your own review</p>
     </div>
 
-    <form asp-controller="Product" asp-action="PostReview" asp-route-ProductId="@Model.Product.ProductId" 
+    <form asp-controller="Product" asp-action="PostReview" asp-route-ProductId="@Model.Product.ProductId"
           method="post" enctype="multipart/form-data">
 
         <div id="CreateReviewContainer" class="CreateReviewContainer">
@@ -111,7 +115,7 @@
         <button id="WriteReview" class="Products-Information-Review-Btns">Write review</button>
         <button id="SeeReviews" class="Products-Information-Review-Btns">See reviews</button>
     </div>
-   
+
 </div>
 
 <div class="Products-Information-Suggestions">
@@ -123,30 +127,24 @@
 
     $(document).ready(function () {
 
-         function get_ProductsInformationReview() {
+        function get_ProductsInformationReview() {
 
             let element = document.getElementById("Review");
-
             document.getElementById("Review-Banner-Head").style.display = "none";
             document.getElementById("Review-Banner-Body").style.display = "none";
             document.getElementById("WriteReview").style.display = "none";
             document.getElementById("SeeReviews").style.display = "none";
-
             element.style.width = "84%";
             element.style.height = "85%";
             element.style.zIndex = "1";
-
             return element;
         }
-
         document.getElementById("WriteReview").addEventListener('click', () => {
-
             get_ProductsInformationReview();
             document.getElementById("CreateReviewContainer").style.display = "block";
         });
 
         function validFileType(file) {
-
             const fileTypes = [
                 "image/apng",
                 "image/bmp",
@@ -159,18 +157,13 @@
                 "image/webp",
                 "image/x-icon"
             ];
-
             return fileTypes.includes(file.type);
         }
 
         document.getElementById("CreateReview-Picture").addEventListener('change', () => {
-
             let selectedFile = document.getElementById("CreateReview-Picture").files;
-
             console.log(selectedFile[0]);
-
             if (selectedFile.length > 0 && validFileType(selectedFile[0])) {
-
                 const image = document.createElement('img');
                 image.style.position = "absolute";
                 image.style.width = "100%";
@@ -180,29 +173,26 @@
             }
         });
 
-
         function insertReviewInfo() {
-
             @if (Model.Reviews.Any())
             {
                 @:let element = document.getElementById("Review");
-
                 @foreach (var review in Model.Reviews)
                 {
-                   @:element.innerHTML += `<div class="Review-Columns">
-                            @:<div class="Review-Columns-col1">
-                                @:<div class="Review-Columns-col1-Head"></div>
-                                @:<div class="Review-Columns-col1-Body">
-                                @:<div class="CreateReview-Picture">
-                                @:<img src="data:image/jpeg;base64,@Convert.ToBase64String(review.ReviewImage)">
-                                @:</img>
-                                @:</div>
-                                @:<div class="Review-Columns-col1-Body-Content">@review.ReviewContent</div>
-                                @:</div>
-                            @:</div>
-                        @:<div class="Review-Columns-col2">
-                            @:<div id="Comment-Container-Parent-@review.ReviewId" class="Review-Columns-col2-Comment-Container-Parent">
+                  @:element.innerHTML += `<div class="Review-Columns">
+                     @:<div class="Review-Columns-col1">
+                     @:<div class="Review-Columns-col1-Head"></div>
+                     @:<div class="Review-Columns-col1-Body">
+                        @:<div class="CreateReview-Picture">
+                        @:<img src="data:image/jpeg;base64,@Convert.ToBase64String(review.ReviewImage)">
+                        @:</img>
+                        @:</div>
+                        @:<div class="Review-Columns-col1-Body-Content">@review.ReviewContent</div>
+                     @:</div>
+                     @:</div>
 
+                    @:<div class="Review-Columns-col2">
+                            @:<div id="Comment-Container-Parent-@review.ReviewId" class="Review-Columns-col2-Comment-Container-Parent">
                                   @foreach (var comment in review.ReviewComments)
                                   {
                                     @:<div class="Review-Columns-col2-Comment-Container">
@@ -222,35 +212,27 @@
                                       @:</div>
                                     @:</div>
                                   }
-
                             @:</div>
-
                             @:<input type="text" class="Container-AddComment" />
                             @:<input type="hidden" class="ReviewId" value="@review.ReviewId" />
                             @:<button class="AddComment-Btn">Comment</button>
-
                       @:</div>
-                   @:</div>`;
-                 }
+
+                  @:</div>`;
+                }
             }
         }
 
         document.getElementById("SeeReviews").addEventListener('click', () => {
-
             get_ProductsInformationReview();
             insertReviewInfo();
-
             let AddComments = document.getElementsByClassName("Container-AddComment");
             let ReviewIds = document.getElementsByClassName("ReviewId");
             let AddCommentBtns = document.getElementsByClassName("AddComment-Btn");
-
             for (let i = 0; i < AddCommentBtns.length; i++) {
-
                 AddCommentBtns[i].addEventListener('click', () => {
-
                     let comment = AddComments[i].value;
                     let reviewId = ReviewIds[i].value;
-
                     $.ajax({
                         type: 'POST',
                         url: '/Product/PostComment',
@@ -273,35 +255,28 @@
         });
 
         setInterval(function () {
-
             $.ajax({
                 type: 'GET',
                 url: '/Product/GetComment',
                 data: {},
                 success: function (response) {
-
                     console.log("pulled new comment", response);
-
                     if (response != null)
                     {
                         let commentContainer = document.createElement("div");
                         let commentHead = document.createElement("div");
                         let commentBody = document.createElement("div");
                         let commentFoot = document.createElement("div");
-
                         commentHead.setAttribute("class", "Comment-Container-Head");
                         commentBody.setAttribute("class", "Comment-Container-Body");
                         commentFoot.setAttribute("class", "Comment-Container-Foot");
                         commentContainer.setAttribute("class", "Review-Columns-col2-Comment-Container");
-
                         commentHead.innerHTML = response.dateTime;
                         commentBody.innerHTML = response.comment;
                         commentFoot.innerHTML = "Likes: "+response.likes;
-
                         commentContainer.appendChild(commentHead);
                         commentContainer.appendChild(commentBody);
                         commentContainer.appendChild(commentFoot);
-
                         document.getElementById("Comment-Container-Parent-" + response.reviewId).appendChild(commentContainer);
                     }
                 },
@@ -312,9 +287,7 @@
                     console.log("Error", response);
                 }
             });
-
             console.log("pulling data..");
-
         }, 5000);
     });
 

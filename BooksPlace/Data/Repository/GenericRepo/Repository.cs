@@ -26,6 +26,11 @@ namespace BooksPlace.Data.Repository.GenericRepo
             dbContext.Set<TElement>().AddRange(elements);
         }
 
+        public void Update(TElement element)
+        {
+            dbContext.Set<TElement>().Update(element);
+        }
+
         public void Remove(TElement element)
         {
             dbContext.Set<TElement>().Remove(element);

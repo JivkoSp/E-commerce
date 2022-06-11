@@ -12,14 +12,16 @@ namespace BooksPlace.Data.Repository.UnitOfWork
         public IProductRepo Product { get; private set; }
         public IReviewRepo Review { get; private set; }
         public IReviewCommentRepo ReviewComment { get; private set; }
+        public IProductCategoryRepo ProductCategory { get; private set; }
 
         public UnitOfWork(BooksPlaceDbContext dbContext, IProductRepo product, IReviewRepo review,
-            IReviewCommentRepo reviewComment)
+            IReviewCommentRepo reviewComment, IProductCategoryRepo productCategory)
         {
             this.dbContext = dbContext;
             Product = product;
             Review = review;
             ReviewComment = reviewComment;
+            ProductCategory = productCategory;
         }
 
         public void SaveChanges()

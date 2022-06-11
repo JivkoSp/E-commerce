@@ -1,4 +1,6 @@
+using BooksPlace.AutoMapperProfiles;
 using BooksPlace.Data;
+using BooksPlace.Data.Repository.UnitOfWork;
 using BooksPlace.ExtensionMethods;
 using BooksPlace.MessageBroker;
 using BooksPlace.Models;
@@ -74,6 +76,11 @@ namespace BooksPlace
             });
 
             services.AddAntiforgery(config => config.HeaderName = "XSRF-TOKEN");
+
+            services.AddAutoMapper(configAction => {
+
+                configAction.AddProfile<ProductProfile>();
+            });
 
             services.AddLiveReload();
         }

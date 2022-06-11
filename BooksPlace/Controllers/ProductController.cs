@@ -2,6 +2,7 @@
 using BooksPlace.MessageBroker;
 using BooksPlace.Models;
 using BooksPlace.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace BooksPlace.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private IUnitOfWork unitOfWork;

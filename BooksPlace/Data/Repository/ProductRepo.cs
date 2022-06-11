@@ -48,7 +48,8 @@ namespace BooksPlace.Data.Repository
 
         public Product GetProduct(int id)
         {
-            return BooksPlaceDbContext.Products.Find(id);
+            return BooksPlaceDbContext.Products.Where(p => p.ProductId == id)
+                .Include(p => p.ProductCategory).FirstOrDefault();
         }
     }
 }

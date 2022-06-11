@@ -9,6 +9,7 @@ namespace BooksPlace.Data.Repository.Interfaces
     {
         void Add(TElement element);
         void AddMany(IEnumerable<TElement> elements);
+        void Update(TElement element);
         void Remove(TElement element);
         void RemoveMany(IEnumerable<TElement> elements);
         TElement Get(int id);

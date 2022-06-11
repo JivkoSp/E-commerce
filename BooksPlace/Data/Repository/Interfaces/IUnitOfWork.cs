@@ -10,6 +10,7 @@ namespace BooksPlace.Data.Repository.Interfaces
         IProductRepo Product { get; }
         IReviewRepo Review { get; }
         IReviewCommentRepo ReviewComment { get; }
+        IProductCategoryRepo ProductCategory { get; }
         void SaveChanges();
     }
 }
