@@ -1,4 +1,14 @@
-﻿@page
+﻿@page 
 @model BooksPlace.Pages.Banned.BannedUserModel
 
- <h4>You are banned from using this application!</h4>
+    <div class="BannUser-Container">
+        
+        <label>You are banned from using this application!</label>
+
+        <span class="BannUser-Bann-Info">         
+            Bann will last until: 
+            <span class="BannUser-Bann-Time">@Model.DateTime</span>
+        </span>
+
+    </div>
+

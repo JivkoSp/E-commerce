@@ -21,7 +21,9 @@ namespace BooksPlace.Middlewares
         public async Task Invoke(HttpContext httpContext, IUnitOfWork unitOfWork,
             UserManager<User> userManager)
         {
-            var bann = unitOfWork.BannedUser.GetBannedUser(userManager.GetUserId(httpContext.User));
+            string userId = userManager.GetUserId(httpContext.User);
+
+            var bann = unitOfWork.BannedUser.GetBannedUser(userId);
 
             if (bann == null || bann != null && bann.BannDate.CompareTo(DateTime.Now) <= 0)
             {
