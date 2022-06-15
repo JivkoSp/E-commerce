@@ -1,0 +1,14 @@
+﻿using BooksPlace.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace BooksPlace.Data.Repository.Interfaces
+{
+    public interface IPromotionCategoryRepo : IRepository<PromotionCategory>
+    {
+        IEnumerable<PromotionCategory> GetPromotionCategories();
+        PromotionCategory GetPromotion(int promotionId);
+    }
+}

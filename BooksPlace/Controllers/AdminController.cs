@@ -6,6 +6,7 @@ using BooksPlace.Models.Dtos;
 using BooksPlace.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
@@ -21,11 +22,16 @@ namespace BooksPlace.Controllers
         private int pageSize = 19;
         private IUnitOfWork unitOfWork;
         private IMapper mapper;
+        private UserManager<User> userManager;
+        private RoleManager<IdentityRole> roleManager;
 
-        public AdminController(IUnitOfWork unitOfWork, IMapper mapper)
+        public AdminController(IUnitOfWork unitOfWork, IMapper mapper, 
+            UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -98,5 +104,158 @@ namespace BooksPlace.Controllers
                  );
         }
 
+        public IActionResult Manage_Customers()
+        {
+            List<UserDto> userDtos = new List<UserDto>();
+
+            foreach(var user in userManager.Users)
+            {
+                userDtos.Add(mapper.Map<UserDto>(user));
+            }
+
+            return View
+                (
+                    new UsersViewModel
+                    {
+                        UserDtos = userDtos,
+                        PromotionCategories = unitOfWork.PromotionCategory.GetPromotionCategories()
+                    }
+                );
+        }
+
+        public async Task<IActionResult> Edit_Customer(string customerId)
+        {
+            return View
+                (
+                    new UserViewModel
+                    {
+                        UserDto = mapper.Map<UserDto>(await userManager.FindByIdAsync(customerId)),
+                        PromotionCategories = unitOfWork.PromotionCategory.GetPromotionCategories()
+                    }
+                );
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit_Customer(UserDto UserDto)
+        {
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    Models.User user = mapper.Map<User>(UserDto);
+
+                    unitOfWork.User.Attach(user);
+
+                    await userManager.AddToRoleAsync(user, UserDto.UserRole);
+
+                    if (UserDto.BanUser)
+                    {
+                        var bannedUser = unitOfWork.BannedUser.GetBannedUser(UserDto.Id);
+
+                        if(bannedUser != null)
+                        {
+                            bannedUser.BannDate = UserDto.BanDateTime;
+                            unitOfWork.BannedUser.Update(bannedUser);
+                        }
+                        else
+                        {
+                            BannedUser newBannedUser = new BannedUser
+                            {
+                                UserId = UserDto.Id,
+                                BannDate = UserDto.BanDateTime
+                            };
+
+                            unitOfWork.BannedUser.Add(newBannedUser);
+                        }
+                    }
+
+                    if(UserDto.UnBanUser)
+                    {
+                        var bannedUser = unitOfWork.BannedUser.GetBannedUser(UserDto.Id);
+
+                        if(bannedUser != null)
+                        {
+                            unitOfWork.BannedUser.Remove(bannedUser);
+                        }
+                    }
+
+                    await userManager.UpdateAsync(user);
+                    unitOfWork.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                return RedirectToAction("Manage_Customers");
+            }
+
+            return View
+                (
+                     new UserViewModel
+                     {
+                         UserDto = UserDto,
+                         PromotionCategories = unitOfWork.PromotionCategory.GetPromotionCategories()
+                     }
+                );
+        }
+
+        public async Task<IActionResult> Delete_Customer(string customerId)
+        {
+            await userManager.DeleteAsync(await userManager.FindByIdAsync(customerId));
+            return RedirectToAction("Manage_Customers");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(string roleName)
+        {
+            try
+            {
+                IdentityRole newRole = new IdentityRole
+                {
+                    Name = roleName
+                };
+
+                await roleManager.CreateAsync(newRole);
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return RedirectToAction("Manage_Customers");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser(UserDto UserDto)
+        {
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    Models.User newUser = new Models.User
+                    {
+                        UserName = UserDto.UserName,
+                        Email = UserDto.Email,
+                        EmailConfirmed = true,
+                        PhoneNumber = UserDto.PhoneNumber,
+                        PromotionCategoryId = UserDto.PromotionCategoryId
+                    };
+
+                    IdentityResult result = await userManager.CreateAsync(newUser, UserDto.Password);
+
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(newUser, UserDto.UserRole);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return RedirectToAction("Manage_Customers");
+        }
     }
 }

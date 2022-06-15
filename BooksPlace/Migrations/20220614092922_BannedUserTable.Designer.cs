@@ -4,14 +4,16 @@ using BooksPlace.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BooksPlace.Migrations
 {
     [DbContext(typeof(BooksPlaceDbContext))]
-    partial class BooksPlaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220614092922_BannedUserTable")]
+    partial class BannedUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

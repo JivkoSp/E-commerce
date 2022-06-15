@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model  UserViewModel
+
+<form asp-controller="Admin" asp-action="Edit_Customer" asp-route-UserDto.Id="@Model.UserDto.Id" method="post">
+
+    <input type="hidden" asp-for="UserDto.PhoneNumber" />
+    <input type="hidden" asp-for="UserDto.PhoneNumberConfirmed" />
+    <input type="hidden" asp-for="UserDto.PasswordHash"/>
+    <input type="hidden" asp-for="UserDto.TwoFactorEnabled"/>
+    <input type="hidden" asp-for="UserDto.AccessFailedCount"/>
+    <input type="hidden" asp-for="UserDto.LockoutEnd"/>
+    <input type="hidden" asp-for="UserDto.LockoutEnabled"/>
+    <input type="hidden" asp-for="UserDto.ConcurrencyStamp"/>
+    <input type="hidden" asp-for="UserDto.SecurityStamp"/>
+
+    <div class="Edit_Customer-Container">
+
+        <div class="Edit_Customer-UserName">
+            <label for="UserName">User name</label>
+            <input type="hidden" asp-for="UserDto.UserName" />
+            <input type="hidden" asp-for="UserDto.NormalizedUserName" />
+            <div id="UserName">@Model.UserDto.UserName</div>
+        </div>
+
+        <div class="Edit_Customer-Email">
+            <label for="Email">Email</label>
+            <input type="hidden" asp-for="UserDto.Email" />
+            <input type="hidden" asp-for="UserDto.EmailConfirmed" />
+            <div id="Email">@Model.UserDto.Email</div>
+        </div>
+
+        <div class="Edit_Customer-UserRole">
+            <label for="UserRole">User role</label>
+            <select id="UserRole" asp-for="UserDto.UserRole">
+                <option>Normal</option>
+                <option>Staff</option>
+                <option>Admin</option>
+            </select>
+        </div>
+
+        <div class="Edit_Customer-BanUser">
+            <label for="BanUser">Ban user</label>
+            <input id="BanUser" type="checkbox" asp-for="UserDto.BanUser" />
+            <input type="datetime-local" asp-for="UserDto.BanDateTime" />
+        </div>
+
+        <div class="Edit_Customer-UnBanUser">
+            <label for="UnBanUser">Unban user</label>
+            <input id="UnBanUser" type="checkbox" asp-for="UserDto.UnBanUser" />
+        </div>
+
+        <div class="Edit_Customer-CustomerCat">
+            <label for="PromotionCategory">Promotion category</label>
+            <select id="PromotionCategory" asp-for="UserDto.PromotionCategoryId">
+                @foreach (var promoCat in Model.PromotionCategories)
+                {
+                    <option value="@promoCat.PromotionCategoryId">@promoCat.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="Edit_Customer-Btn-Container">
+            <button type="submit">Save</button>
+            <button>Back</button>
+        </div>
+    </div>
+
+</form>
+
+
+

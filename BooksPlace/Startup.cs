@@ -3,6 +3,7 @@ using BooksPlace.Data;
 using BooksPlace.Data.Repository.UnitOfWork;
 using BooksPlace.ExtensionMethods;
 using BooksPlace.MessageBroker;
+using BooksPlace.Middlewares;
 using BooksPlace.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +39,7 @@ namespace BooksPlace
 
             services.AddDbContext<BooksPlaceDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("BooksPlaceDbConnection"));
+                options.EnableSensitiveDataLogging(true);
             });
 
             services.AddIdentity<User, IdentityRole>(options =>
@@ -78,8 +80,8 @@ namespace BooksPlace
             services.AddAntiforgery(config => config.HeaderName = "XSRF-TOKEN");
 
             services.AddAutoMapper(configAction => {
-
                 configAction.AddProfile<ProductProfile>();
+                configAction.AddProfile<UserProfile>();
             });
 
             services.AddLiveReload();
@@ -100,6 +102,7 @@ namespace BooksPlace
             app.UseLiveReload();
             app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseMiddleware<BannMiddleware>();
             app.UseSession();
             app.UseRouting();
             app.UseAuthorization();

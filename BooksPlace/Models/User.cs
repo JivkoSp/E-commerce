@@ -16,6 +16,7 @@ namespace BooksPlace.Models
         }
 
         public int PromotionCategoryId { get; set; }
+        public virtual BannedUser BannedUser { get; set; }
         public virtual PromotionCategory PromotionCategory { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }

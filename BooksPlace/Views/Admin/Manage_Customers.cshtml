@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model UsersViewModel
+
+<div id="Manage_Customers-Container" class="Manage_Customers-Container">
+    <div class="Manage_Customers-Header">
+        <div class="Manage_Customers-Header-TotalUsers">
+            <label>Total users:</label>
+            <div class="Manage_Customers-Header-TotalUsers-Cnt">@Model.UserDtos.Count()</div>
+        </div>
+        <div class="Manage_Customers-Header-ActiveUsers"></div>
+        <div class="Manage_Customers-Header-CreateRole">
+            <button id="CreateRole">Create role</button>
+        </div>
+        <div class="Manage_Customers-Header-CreateUser">
+            <button id="CreateUser">Create user</button>
+        </div>
+    </div>
+    <div class="Manage_Customers-Search"></div>
+
+    <div class="Manage_Customers-Table">
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                    <th>User name</th>
+                    <th>Email</th>
+                    <th>Email confirmed</th>
+                    <th>Phone number</th>
+                    <th>Phone number confirmed</th>
+                    <th>TwoFactor authentication enabled</th>
+                    <th>Access failed count</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.UserDtos)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.EmailConfirmed</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.PhoneNumberConfirmed</td>
+                        <td>@user.TwoFactorEnabled</td>
+                        <td>@user.AccessFailedCount</td>
+                        <td>
+                            <a asp-controller="Admin" asp-action="Edit_Customer" asp-route-customerId="@user.Id"
+                               class="Manage_Customers-Table-Action-Btn">Edit</a>
+                            <a asp-controller="Admin" asp-action="Delete_Customer" asp-route-customerId="@user.Id"
+                               class="Manage_Customers-Table-Action-Btn">Remove</a>
+                        </td>
+                    </tr>        
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<form id="CreateRoleForm" class="CreateRoleForm" 
+     asp-controller="Admin" asp-action="CreateRole" method="post">
+
+    <div class="CreateRoleForm-Header">
+        <span>Create Role</span>
+    </div>
+
+    <div class="CreateRoleForm-Input-Container">
+        <label>Role name</label>
+        <input name="roleName" type="text" />
+    </div>
+
+    <div class="CreateRoleForm-Btn-Container">
+        <button type="submit">Save</button>
+        <button id="CreateRoleForm-Btn-Back">Back</button>
+    </div>
+
+</form>
+
+<form id="CreateUserForm" class="CreateUserForm"
+    asp-controller="Admin" asp-action="CreateUser" method="post">
+
+    <div class="CreateUserForm-Header">
+        <span>Create User</span>
+    </div>
+
+    <div class="CreateUserForm-Container">
+
+        <div class="CreateUserForm-Container-UserName">
+            <label>User name</label>
+            <input type="text" name="UserName" />
+        </div>
+
+        <div class="CreateUserForm-Container-Email">
+            <label>Email name</label>
+            <input type="text" name="Email" />
+        </div>
+
+        <div class="CreateUserForm-Container-PhoneNumber">
+            <label>Phone number</label>
+            <input type="tel" name="PhoneNumber" />
+        </div>
+
+        <div class="CreateUserForm-Container-Password">
+            <label>Password</label>
+            <input type="password" name="Password" />
+        </div>
+
+        <div class="CreateUserForm-Container-ConfirmPassword">
+            <label>Confirm password</label>
+            <input type="password" name="PasswordConfirmed" />
+        </div>
+
+        <div class="CreateUserForm-Container-PromoCat">
+            <label>Promotion category</label>
+            <select name="PromotionCategoryId">
+                @foreach (var promoCat in Model.PromotionCategories)
+                {
+                    <option value="@promoCat.PromotionCategoryId">@promoCat.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="CreateUserForm-Container-Role">
+            <label>Role</label>
+            <select name="UserRole">
+                <option>Normal</option>
+                <option>Staff</option>
+                <option>Admin</option>
+            </select>
+        </div>
+
+
+
+    </div>
+
+    <div class="CreateUserForm-Btn-Container">
+        <button type="submit">Save</button>
+        <button id="CreateUserForm-Btn-Back" type="button">Back</button>
+    </div>
+
+</form>
+
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    $(document).ready(() => {
+
+        document.getElementById("CreateRole").addEventListener('click', () => {
+
+            document.getElementById("CreateRoleForm").style.display = "block";
+            document.getElementById("Manage_Customers-Container").style.opacity = "0.50";
+        });
+
+        document.getElementById("CreateRoleForm-Btn-Back").addEventListener('click', () => {
+
+            document.getElementById("CreateRoleForm").style.display = "none";
+            document.getElementById("Manage_Customers-Container").style.opacity = "1";
+        });
+
+        document.getElementById("CreateUser").addEventListener('click', () => {
+
+            document.getElementById("CreateUserForm").style.display = "block";
+            document.getElementById("Manage_Customers-Container").style.opacity = "0.50";
+        });
+
+        document.getElementById("CreateUserForm-Btn-Back").addEventListener('click', () => {
+
+            document.getElementById("CreateUserForm").style.display = "none";
+            document.getElementById("Manage_Customers-Container").style.opacity = "1";
+        });
+    });
+
+</script>

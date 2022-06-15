@@ -22,6 +22,9 @@ namespace BooksPlace.ExtensionMethods
             services.AddScoped<IReviewRepo, ReviewRepo>();
             services.AddScoped<IReviewCommentRepo, ReviewCommentRepo>();
             services.AddScoped<IProductCategoryRepo, ProductCategoryRepo>();
+            services.AddScoped<IPromotionCategoryRepo, PromotionCategoryRepo>();
+            services.AddScoped<IBannedUserRepo, BannedUserRepo>();
+            services.AddScoped<IUserRepo, UserRepo>();
         }
 
 

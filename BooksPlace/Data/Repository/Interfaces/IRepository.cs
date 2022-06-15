@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace BooksPlace.Data.Repository.Interfaces
         void Update(TElement element);
         void Remove(TElement element);
         void RemoveMany(IEnumerable<TElement> elements);
+        void Attach(TElement element);
         TElement Get(int id);
     }
 }

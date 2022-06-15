@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BooksPlace.Models.ViewModels
 {
-    public class EditProductViewModel
+    public class UsersViewModel
     {
-        public ProductDto ProductDto { get; set; }
-        public IEnumerable<ProductCategory> ProductCategories { get; set; }
+        public IEnumerable<UserDto> UserDtos { get; set; }
+        public IEnumerable<PromotionCategory> PromotionCategories { get; set; }
     }
 }

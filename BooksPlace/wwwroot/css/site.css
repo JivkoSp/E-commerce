@@ -21,6 +21,10 @@
     background-color: #1d2b2b;
 }*/
 
+.field-validation-error {
+    color: orangered;
+}
+
 body {
     background-color: rgb(221, 221, 221);
 }
@@ -827,7 +831,7 @@ input[type="file"] {
     display: flex;
     justify-content: center;
     color: white;
-    background-color: saddlebrown;
+    background-color: rgb(31, 30, 27);
 }
 
 .Admin-Navigation-Menu-Cat:hover{
@@ -1201,6 +1205,540 @@ input[type="file"] {
     font-size:80%;
 }
 
-.field-validation-error {
-    color: orangered;
+.Manage_Customers-Container {
+    position: absolute;
+    top: 5%;
+    left: 16%;
+    height: 90%;
+    width: 80%;
+    background-color: rgb(31, 30, 27);
+}
+
+.Manage_Customers-Header{
+    position:absolute;
+    height:10%;
+    width:100%;
+    background-color:rgb(53, 51, 51);
+}
+
+.Manage_Customers-Header-TotalUsers{
+    position:relative;
+    width:30%;
+    height:100%;
+    color:whitesmoke;
+}
+
+.Manage_Customers-Header-TotalUsers label{
+    position:absolute;
+    top:30%;
+    left:2%;
+    font-size:110%;
+    font-family:'Agency FB';
+}
+
+.Manage_Customers-Header-TotalUsers-Cnt {
+    position: absolute;
+    top: 30%;
+    left: 4.5em;
+    font-size: 110%;
+    font-family: 'Agency FB';
+}
+
+.Manage_Customers-Header-CreateRole{
+    position:absolute;
+    top:25%;
+    right:8em;
+}
+
+.Manage_Customers-Header-CreateRole button{
+    padding:0.5em;
+    font-family:'Agency FB';
+    font-size:90%;
+    font-weight: bold;
+    background-color:rgb(221, 221, 221);
+}
+
+.Manage_Customers-Header-CreateUser {
+    position: absolute;
+    top: 25%;
+    right: 2em;
+}
+
+.Manage_Customers-Header-CreateUser button{
+    padding:0.5em;
+    font-family:'Agency FB';
+    font-size:90%;
+    font-weight: bold;
+    background-color:rgb(221, 221, 221);
+}
+
+.Manage_Customers-Search {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    height: 5%;
+    width: 70%;
+    background-color: rgb(53, 51, 51);
+}
+
+.Manage_Customers-Table {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    height:75%;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.Manage_Customers-Table table{
+   width: 100%;
+}
+
+.Manage_Customers-Table th {
+   position: sticky;
+   top: 0;
+   padding:1.5%;
+   text-align:center;
+   font-family:'Agency FB';
+   border: 1px solid black;
+   color:whitesmoke;
+   background-color:rgb(53, 51, 51);
+}
+
+.Manage_Customers-Table td{
+    padding:1%;
+    font-size:90%;
+    font-family:'Agency FB';
+    color:whitesmoke;
+    background-color:rgb(53, 51, 51);
+}
+
+.Manage_Customers-Table-Action-Btn {
+    display: block;
+    padding: 0.5em;
+    margin: 0.5em;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid black;
+    color: whitesmoke;
+    background-color:rgb(75, 71, 71);
+}
+
+.Edit_Customer-Container{
+    position:absolute;
+    top:10%;
+    left:21%;
+    height:80%;
+    width:70%;
+    font-family:'Agency FB';
+    font-size:120%;
+    color:whitesmoke;
+    background-color:rgb(31, 30, 27);
+}
+
+.Edit_Customer-UserName{
+    position:absolute;
+    top:2%;
+    left:5%;
+    width:25%;
+    height:4em;
+    background-color:rgb(42, 34, 34);
+}
+
+.Edit_Customer-UserName label{
+    position:absolute;
+    top:30%;
+}
+
+.Edit_Customer-Email {
+    position: absolute;
+    top: 16%;
+    left: 5%;
+    width: 25%;
+    height: 4em;
+    background-color: rgb(42, 34, 34);
+}
+
+.Edit_Customer-Email label{
+    position:absolute;
+    top:30%;
+}
+
+.Edit_Customer-UserRole {
+    position: absolute;
+    top: 5%;
+    left: 45%;
+    width: 25%;
+    height: 4em;
+    background-color: rgb(42, 34, 34);
+}
+
+.Edit_Customer-UserRole label{
+    margin-left:25%;
+}
+
+
+.Edit_Customer-BanUser {
+    position: absolute;
+    top: 20%;
+    left: 32%;
+    width: 25%;
+    height: 4em;
+    background-color: rgb(42, 34, 34);
+}
+
+.Edit_Customer-BanUser input{
+    width:50%;
+    color:whitesmoke;
+    background-color:rgb(75, 71, 71);
+}
+
+.Edit_Customer-UnBanUser {
+    position: absolute;
+    top: 20%;
+    right: 16%;
+    width: 25%;
+    height: 4em;
+    background-color: rgb(42, 34, 34);
+}
+
+.Edit_Customer-CustomerCat {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 25%;
+    height: 4em;
+    background-color: rgb(42, 34, 34);
+}
+
+.Edit_Customer-Btn-Container{
+    position:absolute;
+    bottom:0%;
+    right:0%;
+    width:10em;
+    height:4em;
+    display:flex;
+    justify-content:center;
+}
+
+.Edit_Customer-Btn-Container button{
+    width:3em;
+    height:2.5em;
+    margin:5%;
+    margin-top:10%;
+    font-family:'Agency FB';
+    font-size:80%;
+    background-color:rgb(209, 209, 209);
+}
+
+.CreateRoleForm{
+    position:absolute;
+    display:none;
+    top:10%;
+    left:35%;
+    width:40%;
+    height:40%;
+    z-index:1;
+    background-color:rgb(31, 30, 27);
+
+}
+
+.CreateRoleForm-Header{
+    position:absolute;
+    width:100%;
+    height:15%;
+    background-color:rgb(42, 34, 34);
+}
+
+.CreateRoleForm-Header span{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateRoleForm-Input-Container {
+    position: absolute;
+    top:20%;
+    left:20%;
+    width: 60%;
+    height: 30%;
+    background-color: rgb(42, 34, 34);
+}
+
+.CreateRoleForm-Input-Container label{
+    position:absolute;
+    top:25%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:110%;
+}
+
+.CreateRoleForm-Input-Container input{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:40%;
+    background-color: dimgrey;
+}
+
+.CreateRoleForm-Btn-Container {
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 12em;
+    height: 3em;
+}
+
+.CreateRoleForm-Btn-Container button{
+    padding:0.4em;
+    margin:2%;
+    margin-top:5%;
+    font-family:'Agency FB';
+    font-size:90%;
+    font-weight: bold;
+    background-color:rgb(221, 221, 221);
+}
+
+.CreateUserForm{
+    position:absolute;
+    display:none;
+    top:5%;
+    left:20%;
+    width:70%;
+    height:90%;
+    z-index:1;
+    background-color:rgb(31, 30, 27);
+}
+
+.CreateUserForm-Header {
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(42, 34, 34);
+}
+
+.CreateUserForm-Header span{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container {
+    position: absolute;
+    top: 12%;
+    width: 100%;
+    height: 88%;
+    background-color: rgb(42, 34, 34);
+}
+
+.CreateUserForm-Container-UserName {
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+    padding-left: 8em;
+}
+
+.CreateUserForm-Container-UserName label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-UserName input{
+    position:absolute;
+    top:25%;
+    width:55%;
+    height:40%;
+    color:whitesmoke;
+    background-color: dimgrey;
+}
+
+.CreateUserForm-Container-Email {
+    position: absolute;
+    top: 17%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+    padding-left: 8em;
+}
+
+.CreateUserForm-Container-Email label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-Email input{
+    position:absolute;
+    top:25%;
+    width:55%;
+    height:40%;
+    color:whitesmoke;
+    background-color: dimgrey;
+}
+
+.CreateUserForm-Container-PhoneNumber {
+    position: absolute;
+    top: 29%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+    padding-left: 8em;
+}
+
+.CreateUserForm-Container-PhoneNumber label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-PhoneNumber input{
+    position:absolute;
+    top:25%;
+    width:55%;
+    height:40%;
+    color:whitesmoke;
+    background-color: dimgrey;
+}
+
+.CreateUserForm-Container-Password {
+    position: absolute;
+    top: 41%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+    padding-left: 8em;
+}
+
+.CreateUserForm-Container-Password label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-Password input{
+    position:absolute;
+    top:25%;
+    width:55%;
+    height:40%;
+    color:whitesmoke;
+    background-color: dimgrey;
+}
+
+.CreateUserForm-Container-ConfirmPassword {
+    position: absolute;
+    top: 54%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+    padding-left: 8em;
+}
+
+.CreateUserForm-Container-ConfirmPassword label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-ConfirmPassword input{
+    position:absolute;
+    top:25%;
+    width:55%;
+    height:40%;
+    color:whitesmoke;
+    background-color: dimgrey;
+}
+
+.CreateUserForm-Container-PromoCat {
+    position: absolute;
+    top: 67%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+    padding-left: 8.5em;
+}
+
+.CreateUserForm-Container-PromoCat label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-PromoCat select{
+    position:absolute;
+    top:20%;
+    height:50%;
+    width:40%;
+    color:whitesmoke;
+    background-color:dimgray;
+}
+
+.CreateUserForm-Container-Role {
+    position: absolute;
+    top: 79%;
+    left: 30%;
+    width: 50%;
+    height: 10%;
+    padding-left: 5em;
+}
+
+.CreateUserForm-Container-Role label{
+    position:absolute;
+    top:25%;
+    left:2%;
+    color:whitesmoke;
+    font-family:'Agency FB';
+    font-size:120%;
+}
+
+.CreateUserForm-Container-Role select{
+    position:absolute;
+    top:20%;
+    height:50%;
+    width:40%;
+    color:whitesmoke;
+    background-color:dimgray;
+}
+
+.CreateUserForm-Btn-Container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8em;
+    height: 5em;
+}
+
+.CreateUserForm-Btn-Container button{
+    padding:0.5em;
+    margin:5%;
+    margin-top:20%;
+    background-color:rgb(221, 221, 221);
 }

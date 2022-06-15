@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BooksPlace.Data.RabbitConnection;
+using BooksPlace.Data.Repository.Interfaces;
 
 namespace BooksPlace.Pages.Login
 {
@@ -52,10 +53,10 @@ namespace BooksPlace.Pages.Login
 
                 channel.ExchangeDeclare
                     (
-                        exchange: "BooksPlaceExchange", 
-                        type: "direct", 
-                        durable: false, 
-                        autoDelete: false, 
+                        exchange: "BooksPlaceExchange",
+                        type: "direct",
+                        durable: false,
+                        autoDelete: false,
                         arguments: null
                     );
 

@@ -24,6 +24,7 @@ namespace BooksPlace.Data
         public virtual DbSet<PriceOffer> PriceOffers { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<ReviewComment> ReviewComments { get; set; }
+        public virtual DbSet<BannedUser> BannedUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -204,6 +205,19 @@ namespace BooksPlace.Data
                 .HasForeignKey(p => p.CommentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ReviewComment_ReviewComment");
+            });
+
+            modelBuilder.Entity<BannedUser>(entity => {
+
+                entity.ToTable("BannedUser");
+
+                entity.Property(p => p.BannDate)
+                .HasColumnType("datetime2");
+
+                entity.HasOne(p => p.User)
+                .WithOne(p => p.BannedUser)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_BannedUser_User");
             });
         }
     }

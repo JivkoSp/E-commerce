@@ -1,4 +1,7 @@
 ﻿using BooksPlace.Data.Repository.Interfaces;
+using BooksPlace.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +16,22 @@ namespace BooksPlace.Data.Repository.UnitOfWork
         public IReviewRepo Review { get; private set; }
         public IReviewCommentRepo ReviewComment { get; private set; }
         public IProductCategoryRepo ProductCategory { get; private set; }
+        public IPromotionCategoryRepo PromotionCategory { get; private set; }
+        public IBannedUserRepo BannedUser { get; private set; }
+        public IUserRepo User { get; private set; }
 
         public UnitOfWork(BooksPlaceDbContext dbContext, IProductRepo product, IReviewRepo review,
-            IReviewCommentRepo reviewComment, IProductCategoryRepo productCategory)
+            IReviewCommentRepo reviewComment, IProductCategoryRepo productCategory,
+            IPromotionCategoryRepo promotionCategory, IBannedUserRepo bannedUser, IUserRepo user)
         {
             this.dbContext = dbContext;
             Product = product;
             Review = review;
             ReviewComment = reviewComment;
             ProductCategory = productCategory;
+            PromotionCategory = promotionCategory;
+            BannedUser = bannedUser;
+            User = user;
         }
 
         public void SaveChanges()

@@ -1,5 +1,6 @@
 ﻿using BooksPlace.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,11 @@ namespace BooksPlace.Data.Repository.GenericRepo
         public TElement Get(int id)
         {
             return dbContext.Set<TElement>().Find(id);
+        }
+
+        public void Attach(TElement element)
+        {
+            dbContext.Attach(element);
         }
     }
 }
