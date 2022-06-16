@@ -15,6 +15,8 @@ namespace BooksPlace.Data.Repository.Interfaces
         IPromotionCategoryRepo PromotionCategory { get; }
         IBannedUserRepo BannedUser { get; }
         IUserRepo User { get; }
+        IOrderRepo Order { get; }
+        IProductOrderRepo ProductOrder { get; }
 
         void SaveChanges();
     }

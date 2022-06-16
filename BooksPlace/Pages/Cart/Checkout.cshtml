@@ -1,0 +1,53 @@
+﻿@page
+@model BooksPlace.Pages.Cart.CheckoutModel
+
+
+<form asp-page="/Cart/Checkout" method="post">
+
+    <div class="Checkout-Container">
+        <div class="Checkout-Header">
+            <span>Checkout</span>
+        </div>
+
+        <div class="Checkout-Body">
+
+            <div class="Checkout-Body-UserName">
+                <label for="UserName">User name</label>
+                <input id="UserName" type="text" asp-for="UserName"
+                       placeholder="@ViewContext.HttpContext.User.Identity.Name" />
+            </div>
+
+            <div class="Checkout-Body-Country">
+                <label for="Country">Country</label>
+                <input id="Country" type="text" asp-for="Country"
+                       placeholder="Country" />
+            </div>
+
+            <div class="Checkout-Body-City">
+                <label for="City">City</label>
+                <input id="City" type="text" asp-for="City"
+                       placeholder="City" />
+            </div>
+
+            <div class="Checkout-Body-AdressLine">
+                <label for="AdressLine">Adress line</label>
+                <input id="AdressLine" type="text" asp-for="AdressLine"
+                       placeholder="Adress line" />
+            </div>
+
+            <div class="Checkout-Body-ZipCode">
+                <label for="ZipCode">Zip code</label>
+                <input id="ZipCode" type="text" asp-for="ZipCode"
+                       placeholder="Zip code" />
+            </div>
+
+        </div>
+
+        <div class="Checkout-Btn-Container">
+            <button type="submit">Complete order</button>
+            <a asp-controller="Home">Continue shopping and reading reviews</a>
+        </div>
+    </div>
+
+</form>
+
