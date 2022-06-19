@@ -8,6 +8,9 @@ namespace BooksPlace.Data.Repository.Interfaces
 {
     public interface IUserRepo : IRepository<User>
     {
-        public void AttachToIdentityContext(User user);
+        Dictionary<string, int> GetUsersPromoCatGrouping();
+        Dictionary<string, int> GetUsersReviewCount();
+        Dictionary<string, int> GetUsersCommentCount();
+        Dictionary<string, int> GetUsersRoleGrouping();
     }
 }

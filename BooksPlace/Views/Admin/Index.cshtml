@@ -2,3 +2,133 @@
     Layout = "_AdminLayout";
 }
 
+<div class="Admin-OverallStats-Container">
+
+    <div class="Admin-OverallStats-Users"></div>
+    <div class="Admin-OverallStats-Orders"></div>
+    <div class="Admin-OverallStats-ProductReviews"></div>
+    <div class="Admin-OverallStats-Profit"></div>
+</div>
+
+<div id="chart_div"></div>
+<div id="usersPromoCatChart_div"></div>
+<div id="usersRoleChart_div"></div>
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    var chartData;
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    $(document).ready(() => {
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetOrderChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawChart);
+            drawChart();
+        });
+
+        function drawChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "Ordered products",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUserPromoGatChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUserPromoCatChart);
+            drawUserPromoCatChart();
+        });
+
+        function drawUserPromoCatChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 400,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "User promotion categories",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('usersPromoCatChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUsersRoleChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUsersRoleChart);
+            drawUsersRoleChart();
+        });
+
+        function drawUsersRoleChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "User role",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('usersRoleChart_div'));
+            chart.draw(data, options);
+        }
+
+    });
+
+</script>
+

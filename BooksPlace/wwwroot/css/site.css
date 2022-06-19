@@ -820,72 +820,74 @@ input[type="file"] {
     background-color: rgb(53, 51, 51);
 }
 
-.Admin-Navigation-Menu-Avatar{
-    margin:15%;
-    text-align:center;
+.Admin-Navigation-Menu-Sidebar{
+
+}
+
+.Admin-Nav-Sidebar-Avatar{
+    display:block;
+    margin:15% auto auto;
+    margin-bottom:10%;
     color:whitesmoke;
+    text-decoration:none;
+    font-size:1.5em;
+    font-weight: 600;
+    text-align:center;
 }
 
-.Admin-Navigation-Menu-Cat {
-    position: relative;
-    margin: 5%;
-    padding: 0.5em;
-    height: 8%;
-    width: 90%;
-    text-align: center;
-    font-family: 'Agency FB';
-    display: flex;
-    justify-content: center;
-    color: white;
-    background-color: rgb(31, 30, 27);
-}
-
-.Admin-Navigation-Menu-Cat:hover{
-   background-color: rgb(75, 71, 71);
-   border: 1px solid #1d2b2b;
-   box-shadow: 0 0 5px dimgray;
-}
-
-.Admin-Navigation-Menu-Cat-Item{
-    position:absolute;
-    top:35%;
-}
-
-.Admin-Navigation-Menu-Cat-Options {
-    position:relative;
-    display:none;
-    width:40%;
-    height:30vh;
-    overflow-y:auto;
-    overflow-x:hidden;
-    background-color:dimgray;
-}
-
-.Admin-Nav-Options-Btn-Container{
-    position:absolute;
-    top:10%;
+nav ul{
+    height:100%;
     width:100%;
+    list-style:none;
 }
 
-.Admin-Nav-Options-Btn{
-   display:block;
-   margin:5%;
-   padding:5%;
-   text-align:center;
-   text-decoration:none;
-   border-style: solid;
-   border-color:black;
-   font-size:90%;
-   color:whitesmoke;
-   background-color:#1d2b2b;
+nav ul li{
+    line-height:60px;
+    border-bottom: 1px solid rgba(194, 38, 50, 0.80);
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    padding-left:0.5em;
+    font-weight:500;
+    display:block;
+    width:100%;
+    border-left: 3px solid transparent;
+}
+
+nav ul li a:hover{
+    color:cyan;
+    background:#1e1e1e;
+    border-left-color:cyan;
+}
+
+nav ul ul{
+    position:static;
+    display:none;
+}
+
+nav ul ul li{
+    line-height:40px;
+    border-bottom:none;
+}
+
+nav ul ul li a{
+    padding-left:2em;
+    font-size:1.2em;
+    color:#e6e6e6;
+}
+
+nav ul:last-child li:nth-child(5){
+   background-color:brown;
 }
 
 .Products-Body-Admin {
     position: absolute;
     left: 14vw;
-    top:5vh;
-    height:90vh;
-    width:84vw;
+    top: 5vh;
+    height: 90vh;
+    width: 84vw;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #1d2b2b;
@@ -1980,4 +1982,127 @@ input[type="file"] {
     color:whitesmoke;
     background-color:rgb(42, 34, 34);
     border-color:black;
+}
+
+#chart_div{
+    position:absolute;
+    top:30%;
+    left:15%;
+}
+
+#usersPromoCatChart_div{
+    position:absolute;
+    top:50%;
+    left:40%;
+}
+
+#usersRoleChart_div{
+    position:absolute;
+    top:30%;
+    right:9%;
+}
+
+.Admin-OverallStats-Container {
+    position: absolute;
+    display: flex;
+    left: 12%;
+    width: 88%;
+    min-width: 700px;
+    height: 25vh;
+}
+
+.Admin-OverallStats-Users{
+    position:absolute;
+    margin:2% 5% 5% 5%;
+    width:20%;
+    height:60%;
+    box-shadow: dimgrey 2px 2px 5px;
+    background-color:rgb(53, 51, 51);
+}
+
+.Admin-OverallStats-Orders {
+    position: absolute;
+    margin: 2% 5% 5% 27%;
+    width: 20%;
+    height: 60%;
+    box-shadow: dimgrey 2px 2px 5px;
+    background-color: rgb(53, 51, 51);
+}
+
+.Admin-OverallStats-ProductReviews {
+    position: absolute;
+    margin: 2% 5% 5% 49%;
+    width: 20%;
+    height: 60%;
+    box-shadow: dimgrey 2px 2px 5px;
+    background-color: rgb(53, 51, 51);
+}
+
+.Admin-OverallStats-Profit {
+    position: absolute;
+    margin: 2% 5% 5% 71%;
+    width: 20%;
+    height: 60%;
+    box-shadow: dimgrey 2px 2px 5px;
+    background-color: rgb(53, 51, 51);
+}
+
+#Dashboard-usersPromoCatChart_div{
+    position:absolute;
+    top:3vh;
+    left:17vw;
+}
+
+#Dashboard-usersRoleChart_div {
+    position: absolute;
+    top: 3vh;
+    left: 45vw;
+}
+
+#Dashboard-usersReviewChart_div{
+    position:absolute;
+    top:40vh;
+    left:14vw;
+}
+
+#Dashboard-usersCommentsChart_div{
+    position:absolute;
+    top:3vh;
+    left:70vw;
+}
+
+#Dashboard-activeUsersHistoryChart_div{
+    position:absolute;
+    top:38vh;
+    left:37.5vw;
+}
+
+#Dashboard-usersOrderChart_div {
+    position: absolute;
+    top: 6vh;
+    left: 19vw;
+}
+
+#Dashboard-usersProductNameChart_div{
+    position:absolute;
+    top:6vh;
+    left:43vw;
+}
+
+#Dashboard-dateTimeOrdersChart_div{
+    position:absolute;
+    top:43vh;
+    left:43vw;
+}
+
+#Dashboard-productCategoryOrdersChart_div{
+    position:absolute;
+    top:43vh;
+    left:19vw;
+}
+
+#Dashboard-userPromoCategoryOrdersChart_div{
+    position:absolute;
+    top:6vh;
+    left:67vw;
 }

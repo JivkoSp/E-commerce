@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+<div id="Dashboard-usersPromoCatChart_div"></div>
+<div id="Dashboard-usersRoleChart_div"></div>
+<div id="Dashboard-usersReviewChart_div"></div>
+<div id="Dashboard-usersCommentsChart_div"></div>
+<div id="Dashboard-activeUsersHistoryChart_div"></div>
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    var chartData;
+    google.charts.load('current', { 'packages': ['corechart', 'line'] });
+
+    $(document).ready(() => {
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUserPromoGatChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUserPromoCatChart);
+            drawUserPromoCatChart();
+        });
+
+        function drawUserPromoCatChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 400,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "User promotion categories",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-usersPromoCatChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUsersRoleChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUsersRoleChart);
+            drawUsersRoleChart();
+        });
+
+        function drawUsersRoleChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "User role",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-usersRoleChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUsersReviewChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUsersReviewChart);
+            drawUsersReviewChart();
+        });
+
+        function drawUsersReviewChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "User reviews",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-usersReviewChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUsersCommentChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUsersCommentsChart);
+            drawUsersCommentsChart();
+        });
+
+        function drawUsersCommentsChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "User comments",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-usersCommentsChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetCurrentUsersChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawCurrentUsersChart);
+            drawCurrentUsersChart();
+        });
+
+        function drawCurrentUsersChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 850,
+                height: 450,
+                hAxis: {
+                    title: 'Time'
+                },
+                vAxis: {
+                    title: 'Online users'
+                },
+                colors: ["#097138"],
+                backgroundColor: '#E4E4E4'
+            };
+          
+            var chart = new google.visualization.LineChart(document.getElementById('Dashboard-activeUsersHistoryChart_div'));
+            chart.draw(data, options);
+        }
+
+    });
+
+</script>

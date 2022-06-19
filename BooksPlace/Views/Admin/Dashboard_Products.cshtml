@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+<div id="Dashboard-usersOrderChart_div"></div>
+<div id="Dashboard-usersProductNameChart_div"></div>
+<div id="Dashboard-dateTimeOrdersChart_div"></div>
+<div id="Dashboard-productCategoryOrdersChart_div"></div>
+<div id="Dashboard-userPromoCategoryOrdersChart_div"></div>
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    var chartData;
+    google.charts.load('current', { 'packages': ['corechart', 'line'] });
+
+    $(document).ready(() => {
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetOrderChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUsersOrderChart);
+            drawUsersOrderChart();
+        });
+
+        function drawUsersOrderChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "Buyed products by user",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-usersOrderChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetProductNameOrderChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawProductNameOrderChart);
+            drawProductNameOrderChart();
+        });
+
+        function drawProductNameOrderChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "Orders for product",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-usersProductNameChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetDateTimeOrderChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawDateTimeOrderChart);
+            drawDateTimeOrderChart();
+        });
+
+        function drawDateTimeOrderChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 600,
+                height:300,
+                hAxis: {
+                    title: 'Time'
+                },
+                vAxis: {
+                    title: 'Ammount'
+                },
+                colors: ["#097138"],
+                backgroundColor: '#E4E4E4'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('Dashboard-dateTimeOrdersChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetProductCategoryOrderChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawProductCategoryOrderChart);
+            drawProductCategoryOrderChart();
+        });
+
+        function drawProductCategoryOrderChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "Orders for product category",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-productCategoryOrdersChart_div'));
+            chart.draw(data, options);
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/GetUserPromotionCategoryOrderChartData',
+            data: {},
+            success: function (response) {
+                chartData = response;
+            },
+            failure: function (response) {
+                console.log("Fail", response);
+            },
+            error: function (response) {
+                console.log("Error", response);
+            }
+        }).done(() => {
+
+            google.setOnLoadCallback(drawUserPromotionCategoryOrderChart);
+            drawUserPromotionCategoryOrderChart();
+        });
+
+        function drawUserPromotionCategoryOrderChart() {
+
+            var data = new google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                width: 350,
+                height: 240,
+                backgroundColor: '#E4E4E4',
+                title: "Buyed products by user promotion category",
+                pointSize: 5
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('Dashboard-userPromoCategoryOrdersChart_div'));
+            chart.draw(data, options);
+        }
+
+    });
+
+</script>

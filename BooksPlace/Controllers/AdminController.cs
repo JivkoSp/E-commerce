@@ -4,6 +4,7 @@ using BooksPlace.ExtensionMethods;
 using BooksPlace.Models;
 using BooksPlace.Models.Dtos;
 using BooksPlace.Models.ViewModels;
+using BooksPlace.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,281 @@ namespace BooksPlace.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetOrderChartData()
+        {
+            var orderedProducts = unitOfWork.ProductOrder.GetProductsFromOrders();
+
+            var chartData = new object[orderedProducts.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "UserName",
+                "Products"
+            };
+
+            int indx = 1;
+            foreach (var product in orderedProducts)
+            {
+                chartData[indx] = new object[]
+                {
+                    product.Key,
+                    product.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetProductNameOrderChartData()
+        {
+            var data = unitOfWork.ProductOrder.GetProductNameOrders();
+
+            var chartData = new object[data.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "ProductName",
+                "Orders"
+            };
+
+            int indx = 1;
+            foreach(var item in data)
+            {
+                chartData[indx] = new object[]
+                {
+                    item.Key,
+                    item.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetDateTimeOrderChartData()
+        {
+            var data = unitOfWork.ProductOrder.GetDateTimeOrders();
+
+            var chartData = new object[data.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "DateTime",
+                "Products"
+            };
+
+            int indx = 1;
+            foreach (var item in data)
+            {
+                chartData[indx] = new object[]
+                {
+                    item.Key.ToString("dd/MM/yyyy"),
+                    item.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public IActionResult GetProductCategoryOrderChartData()
+        {
+            var data = unitOfWork.ProductOrder.GetProductCategoryOrders();
+
+            var chartData = new object[data.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "ProductCategory",
+                "Orders"
+            };
+
+            int indx = 1;
+            foreach (var item in data)
+            {
+                chartData[indx] = new object[]
+                {
+                    item.Key,
+                    item.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public IActionResult GetUserPromotionCategoryOrderChartData()
+        {
+            var data = unitOfWork.ProductOrder.GetUserPromotionCategoryOrders();
+
+            var chartData = new object[data.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "UserPromoCat",
+                "Orders"
+            };
+
+            int indx = 1;
+            foreach (var item in data)
+            {
+                chartData[indx] = new object[]
+                {
+                    item.Key,
+                    item.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetUserPromoGatChartData()
+        {
+            var promoCatGrouping = unitOfWork.User.GetUsersPromoCatGrouping();
+
+            var chartData = new object[promoCatGrouping.Count() + 1];
+
+            chartData[0] = new object[]
+             {
+                "UserPromoCat",
+                "Users"
+             };
+
+            int indx = 1;
+
+            foreach(var grouping in promoCatGrouping)
+            {
+                chartData[indx] = new object[]
+                {
+                    grouping.Key,
+                    grouping.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetUsersReviewChartData()
+        {
+            var usersReviewCount = unitOfWork.User.GetUsersReviewCount();
+
+            var chartData = new object[usersReviewCount.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "UserName",
+                "Reviews"
+            };
+
+            int indx = 1;
+
+            foreach(var grouping in usersReviewCount)
+            {
+                chartData[indx] = new object[]
+                {
+                    grouping.Key,
+                    grouping.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetUsersCommentChartData()
+        {
+            var usersCommentCount = unitOfWork.User.GetUsersCommentCount();
+
+            var chartData = new object[usersCommentCount.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "UserName",
+                "Comments"
+            };
+
+            int indx = 1;
+
+            foreach (var grouping in usersCommentCount)
+            {
+                chartData[indx] = new object[]
+                {
+                    grouping.Key,
+                    grouping.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetUsersRoleChartData()
+        {
+            var usersRoleData = unitOfWork.User.GetUsersRoleGrouping();
+
+            var chartData = new object[usersRoleData.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "UserName",
+                "Role"
+            };
+
+            int indx = 1;
+
+            foreach (var grouping in usersRoleData)
+            {
+                chartData[indx] = new object[]
+                {
+                    grouping.Key,
+                    grouping.Value
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetCurrentUsersChartData()
+        {
+            var data = TrackUsers.GetActiveUserHistory();
+
+            var chartData = new object[data.Count() + 1];
+
+            chartData[0] = new object[]
+            {
+                "Minutes",
+                "Users"
+            };
+
+            int indx = 1;
+
+            foreach (var grouping in data)
+            {
+                chartData[indx] = new object[]
+                {
+                    grouping.Value.FirstOrDefault().Value.ToString("HH:mm"),
+                    grouping.Value.Count
+                };
+                indx++;
+            }
+
+            return new JsonResult(chartData);
         }
 
         public IActionResult Catalog_Categories()
@@ -256,6 +532,16 @@ namespace BooksPlace.Controllers
             }
 
             return RedirectToAction("Manage_Customers");
+        }
+
+        public IActionResult Dashboard_Users()
+        {
+            return View();
+        }
+
+        public IActionResult Dashboard_Products()
+        {
+            return View();
         }
     }
 }

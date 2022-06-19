@@ -17,6 +17,7 @@ namespace BooksPlace.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string Zip { get; set; }
+        public DateTime DateTime { get; set; }
         public string UserId { get; set; }
         public virtual User User { get; set; } 
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }

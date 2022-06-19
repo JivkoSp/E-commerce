@@ -55,6 +55,7 @@ namespace BooksPlace.Pages.Cart
                         City = City,
                         Country = Country,
                         Zip = ZipCode,
+                        DateTime = DateTime.Now,
                         UserId = userManager.GetUserId(User)
                     };
 

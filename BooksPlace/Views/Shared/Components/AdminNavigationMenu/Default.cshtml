@@ -1,27 +1,89 @@
 ﻿
+<nav class="Admin-Navigation-Menu-Sidebar">
+    <a class="Admin-Nav-Sidebar-Avatar" asp-controller="Admin" asp-action="Index">Welcome admin</a>
+    <ul>
+        <li>
+            <a id="DASHBOARD" href="#">DASHBOARD</a>
+            <ul id="DASHBOARD-subMenu">
+                <li><a asp-controller="Admin" asp-action="Dashboard_Users">Users</a></li>
+                <li><a asp-controller="Admin" asp-action="Dashboard_Products">Products</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id="CATALOG" href="#">CATALOG</a>
+            <ul id="CATALOG-subMenu">
+                <li><a href="#">Categories</a></li>
+                <li><a asp-controller="Admin" asp-action="Catalog_Products">Products</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id="CUSTOMERS" href="#">CUSTOMERS</a>
+            <ul id="CUSTOMERS-subMenu">
+                <li><a asp-controller="Admin" asp-action="Manage_Customers">Manage</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id="PROMOTIONS" href="#">PROMOTIONS</a>
+            <ul id="PROMOTIONS-subMenu">
+                <li><a href="#">Manage</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">LOGOUT</a>
+        </li>
+    </ul>
 
-<div id="Admin-Nav-DashBoard" class="Admin-Navigation-Menu-Cat">
-    <div class="Admin-Navigation-Menu-Cat-Item">
-       DASHBOARD
-    </div>
-</div>
-<div id="Admin-Nav-Catalog" class="Admin-Navigation-Menu-Cat">
-    <div class="Admin-Navigation-Menu-Cat-Item">
-        CATALOG
-    </div>
-</div>
-<div id="Admin-Nav-Customers" class="Admin-Navigation-Menu-Cat">
-    <div class="Admin-Navigation-Menu-Cat-Item">
-        CUSTOMERS
-    </div>
-</div>
-<div id="Admin-Nav-Promotions" class="Admin-Navigation-Menu-Cat">
-    <div class="Admin-Navigation-Menu-Cat-Item">
-        PROMOTIONS
-    </div>
-</div>
-<div id="Admin-Nav-Logout" class="Admin-Navigation-Menu-Cat">
-    <div class="Admin-Navigation-Menu-Cat-Item">
-        LOGOUT
-    </div>
-</div>
+</nav>
+
+<script>
+
+    document.getElementById("DASHBOARD").addEventListener('click', () => {
+
+        let subMenuElement = document.getElementById("DASHBOARD-subMenu");
+
+        if (subMenuElement.style.display == "block") {
+            subMenuElement.style.display = "none";
+        }
+        else {
+            subMenuElement.style.display = "block";
+        }
+    });
+
+    document.getElementById("CATALOG").addEventListener('click', () => {
+
+        let subMenuElement = document.getElementById("CATALOG-subMenu");
+
+        if (subMenuElement.style.display == "block") {
+            subMenuElement.style.display = "none";
+        }
+        else {
+            subMenuElement.style.display = "block";
+        }
+    });
+
+    document.getElementById("CUSTOMERS").addEventListener('click', () => {
+
+        let subMenuElement = document.getElementById("CUSTOMERS-subMenu");
+
+        if (subMenuElement.style.display == "block") {
+            subMenuElement.style.display = "none";
+        }
+        else {
+            subMenuElement.style.display = "block";
+        }
+    });
+
+    document.getElementById("PROMOTIONS").addEventListener('click', () => {
+
+        let subMenuElement = document.getElementById("PROMOTIONS-subMenu");
+
+        if (subMenuElement.style.display == "block") {
+            subMenuElement.style.display = "none";
+        }
+        else {
+            subMenuElement.style.display = "block";
+        }
+    });
+
+
+</script>

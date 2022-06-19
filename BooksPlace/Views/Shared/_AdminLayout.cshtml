@@ -10,65 +10,11 @@
 
     <div class="Admin-Navigation-Menu-Container">
         <div class="Admin-Navigation-Menu">
-            <div class="Admin-Navigation-Menu-Avatar">Welcome Admin</div>
             <vc:admin-navigation-menu />
-        </div>
-
-        <div id="Admin-Nav-Options" class="Admin-Navigation-Menu-Cat-Options">
         </div>
     </div>
     <div>
         @RenderBody()
     </div>
-
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-    <script>
-
-    $(document).ready(function () {
-
-        document.getElementById("Admin-Nav-DashBoard").addEventListener('click', () => {
-
-            document.getElementById("Admin-Nav-Options").style.display = "block";
-            document.getElementById("Admin-Nav-Options").style.marginTop = "15vh";
-
-
-            document.getElementById("Admin-Nav-Options").innerHTML =
-                `<div class="Admin-Nav-Options-Btn-Container">
-                    <a class="Admin-Nav-Options-Btn">Orders</a>
-                    <a class="Admin-Nav-Options-Btn">Customers</a>
-                    <a class="Admin-Nav-Options-Btn">Products</a>
-                    <a class="Admin-Nav-Options-Btn">Staff</a>
-               </div>`;
-        });
-
-
-        document.getElementById("Admin-Nav-Catalog").addEventListener('click', () => {
-
-            document.getElementById("Admin-Nav-Options").style.display = "block";
-            document.getElementById("Admin-Nav-Options").style.marginTop = "25vh";
-     
-            document.getElementById("Admin-Nav-Options").innerHTML =
-                `<div class="Admin-Nav-Options-Btn-Container">
-                     <a href="Admin/Catalog_Categories" class="Admin-Nav-Options-Btn">Categories</a>
-                     <a href="Admin/Catalog_Products" class="Admin-Nav-Options-Btn">Products</a>
-               </div>`;
-        });
-
-
-        document.getElementById("Admin-Nav-Customers").addEventListener('click', () => {
-
-            document.getElementById("Admin-Nav-Options").style.display = "block";
-            document.getElementById("Admin-Nav-Options").style.marginTop = "38vh";
-
-            document.getElementById("Admin-Nav-Options").innerHTML =
-                `<div class="Admin-Nav-Options-Btn-Container">
-                    <a href="Admin/Manage_Customers" class="Admin-Nav-Options-Btn">Manage</a>
-                    <a class="Admin-Nav-Options-Btn">Logs</a>
-               </div>`;
-        });
-
-    });
-
-    </script>
 </body>
 </html>

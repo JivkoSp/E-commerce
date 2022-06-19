@@ -59,6 +59,8 @@ namespace BooksPlace.Data
                 entity.Property(p => p.City).IsRequired();
                 entity.Property(p => p.Country).IsRequired();
                 entity.Property(p => p.Zip).IsRequired();
+                entity.Property(p => p.DateTime)
+                    .HasColumnType("datetime2");
 
                 entity.HasOne(p => p.User)
                 .WithMany(p => p.Orders)
