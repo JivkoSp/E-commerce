@@ -59,5 +59,18 @@ namespace BooksPlace.Data.Repository
                      .GroupBy(u => u.User.UserName)
                      .ToDictionary(u => u.Key, u => u.Select(u => u.Role.UserRole.RoleId).Count());
         }
+
+        public List<string> SearchUserNames(string searchTerm)
+        {
+            return BooksPlaceDbContext.Users.Where(u => u.UserName.Contains(searchTerm))
+                    .Select(u => u.UserName).ToList();
+        }
+
+        public string GetUserId(string UserName)
+        {
+            return BooksPlaceDbContext.Users
+                    .Where(u => u.UserName == UserName)
+                    .Select(u => u.Id).FirstOrDefault();
+        }
     }
 }

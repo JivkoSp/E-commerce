@@ -3,14 +3,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/css/site.css" rel="stylesheet">
     <title>@ViewBag.Title</title>
+    <link href="~/css/site.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <div class="Navbar">
         <span class="Navbar-Brand"><strong>BooksPlace</strong></span>
-        <input class="Navbar-Search" type="text" placeholder="Search some books..."/>
-        <vc:cart-information/>
+        <form asp-controller="Home" asp-action="SearchResult" method="post" class="Navbar-Search">
+            <input id="search" name="ProductName" type="text" placeholder="Search some books..." />
+        </form>       
+        <vc:cart-information />
     </div>
     <div class="Navigation-Menu-Container">
         <p>Book <br /> categories</p>
@@ -21,5 +24,30 @@
     <div>
         @RenderBody()
     </div>
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+        $(document).ready(() => {
+
+            $('#search').autocomplete({
+
+                source: function (request, response) {
+                    $.getJSON("api/product/search?term=" + request.term, function (data) {
+                        response($.map(data.$values, function (values) {
+                            return values;
+                        }));
+                    });
+                },
+                autoFocus: true,
+                delay: 300,
+                select: function (e, i) {
+                    $("#search").val(i.item.val);
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>

@@ -2,12 +2,14 @@
     Layout = "_AdminLayout";
 }
 
+@model AdminViewModel
+
 <div class="Admin-OverallStats-Container">
 
-    <div class="Admin-OverallStats-Users"></div>
-    <div class="Admin-OverallStats-Orders"></div>
-    <div class="Admin-OverallStats-ProductReviews"></div>
-    <div class="Admin-OverallStats-Profit"></div>
+    <div class="Admin-OverallStats-Users"><label>@Model.UsersCount users</label></div>
+    <div class="Admin-OverallStats-Orders"><label>@Model.OrderCount orders</label></div>
+    <div class="Admin-OverallStats-ProductReviews"><label>@Model.ProductReviewsCount product reviews</label></div>
+    <div class="Admin-OverallStats-Profit"><label>Proffit: @Model.StoreProffit</label></div>
 </div>
 
 <div id="chart_div"></div>

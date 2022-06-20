@@ -18,7 +18,10 @@
             <button id="CreateUser">Create user</button>
         </div>
     </div>
-    <div class="Manage_Customers-Search"></div>
+
+    <form asp-controller="Admin" asp-action="SearchResult" method="post" class="Manage_Customers-Search">
+        <input id="search" name="UserName" type="text" placeholder="Search user" />
+    </form>
 
     <div class="Manage_Customers-Table">
         <table cellspacing="0">
@@ -144,6 +147,7 @@
 
 
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
     $(document).ready(() => {
@@ -171,6 +175,23 @@
             document.getElementById("CreateUserForm").style.display = "none";
             document.getElementById("Manage_Customers-Container").style.opacity = "1";
         });
+
+        $('#search').autocomplete({
+
+            source: function (request, response) {
+                $.getJSON("api/user/search?term=" + request.term, function (data) {
+                    response($.map(data.$values, function (values) {
+                        return values;
+                    }));
+                });
+            },
+            autoFocus: true,
+            delay: 300,
+            select: function (e, i) {
+                $("#search").val(i.item.val);
+            }
+        });
+
     });
 
 </script>

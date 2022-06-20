@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model PromotionDto
+
+<form asp-controller="Admin" asp-action="Manage_Promotions" method="post">
+
+    <div class="Manage-Promotions-Container">
+
+        <div class="Manage-Promotions-Header">
+            <label>Manage product promotions</label>
+        </div>
+        <div class="Manage-Promotions-Body">
+            <div class="Manage-Promotions-Body-Name">
+                <label for="PromotionName">Promotion name</label>
+                <input id="PromotionName" type="text" asp-for="ProductName"/>
+            </div>
+            <div class="Manage-Promotions-Body-Code">
+                <label for="ProductCode">Product code</label>
+                <input id="ProductCode" type="text" asp-for="PromotionCode"/>
+            </div>
+            <div class="Manage-Promotions-Body-ProductName">
+                <label for="productName"></label>
+                <input type="text" asp-for="ProductName"/>
+                <input type="radio" name="update-target" id="productName"/>
+            </div>
+            <div class="Manage-Promotions-Body-ProductCategory">
+                <label for="productCategory"></label>
+                <input type="text" asp-for="ProductCategory"/>
+                <input type="radio" name="update-target" id="productCategory"/>
+            </div>
+        </div>
+
+        <div class="Manage-Promotions-Btn-Container">
+            <button type="submit">Save</button>
+            <button type="button" asp-controller="Admin" asp-action="Index">Back</button>
+        </div>
+
+    </div>
+
+</form>
+

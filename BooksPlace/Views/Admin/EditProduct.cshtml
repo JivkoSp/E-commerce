@@ -12,130 +12,133 @@
         <button id="ChangeProduct" class="Admin-Product-Container-Nav-Btn">Change Product</button>
     </div>
 
-    <input type="text" placeholder="Search product" class="Admin-Product-Container-Search" />
-
-    <div id="Container-Overview" class="Admin-Product-Container-Overview">
-        <div class="Admin-Product-Container-Overview-Picture">
-            @if (Model.ProductDto.ProductImage != null && Model.ProductDto.ProductImage.Length > 0)
-            {
-                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductDto.ProductImage)">
-            }
-        </div>
-        <div class="Admin-Product-Container-Overview-Category">Category: </div>
-        <div class="Admin-Product-Container-Overview-Name">Name: @Model.ProductDto.ProductName</div>
-        <div class="Admin-Product-Container-Overview-Price">Price: @Model.ProductDto.ProductPrice.ToString("c")</div>
-        <div class="Admin-Product-Container-Overview-Desc">
-            <label for="ProductDescription">Description</label>
-            <div class="Admin-Product-Container-Overview-Desc-Container">@Model.ProductDto.ProductDescription</div>
-            
-        </div>
-    </div>
-    
-    <form asp-controller="Admin" asp-action="EditProduct" method="post" enctype="multipart/form-data">
-
-        <div id="Container-AddProduct" class="Admin-Product-Container-AddProduct">
-            <div class="Admin-Product-Container-AddProduct-Product-LabelInput">
-                <label for="AddProductName">Product Name</label>
-                <input id="AddProductName" asp-for="ProductDto.ProductName" type="text" />
-                <span asp-validation-for="ProductDto.ProductName"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Category-LabelInput">
-                <label for="AddCategoryName">Category</label>
-                <select id="AddCategoryName" asp-for="ProductDto.ProductCategoryId">
-                    @foreach (var category in Model.ProductCategories)
-                    {
-                        <option value="@category.ProductCategoryId">@category.Name</option>
-                    }
-                </select>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Price-LabelInput">
-                <label for="AddPrice">Price</label>
-                <input id="AddPrice" asp-for="ProductDto.ProductPrice" type="text" />
-                <span asp-validation-for="ProductDto.ProductPrice"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Desc">
-                <label for="AddDescription">Description</label>
-                <textarea id="AddDescription" asp-for="ProductDto.ProductDescription"></textarea>
-                <span asp-validation-for="ProductDto.ProductDescription"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Picture">
-                <label for="AddProductImage">Product Image</label>
-                <label id="AddProductImage">
-                    <input id="Admin-AddProduct-Picture" asp-for="ProductDto.PictureFile" type="file" accept=".jpg, .jpeg, .png" />
-                </label>
-                <span asp-validation-for="ProductDto.PictureFile"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Btn-Container">
-                <button type="submit" class="Admin-Product-Container-AddProduct-Btn">Add Product</button>
-            </div>
-
-        </div>
-
+    <form asp-controller="Home" asp-action="SearchResult" method="post" class="Admin-Product-Container-Search">
+        <input id="search" type="text" name="ProductName" placeholder="Search product" />
     </form>
 
-    <form asp-controller="Admin" asp-action="EditProduct" asp-route-ProductId="@Model.ProductDto.ProductId" 
-         asp-route-isUpdate="@true" method="post" enctype="multipart/form-data">
-
-        <div id="Container-ChangeProduct" class="Admin-Product-Container-AddProduct">
-            <div class="Admin-Product-Container-AddProduct-Product-LabelInput">
-                <label for="ChangeProductName">Product Name</label>
-                <input id="ChangeProductName" asp-for="ProductDto.ProductName" type="text" />
-                <span asp-validation-for="ProductDto.ProductName"></span>
+        <div id="Container-Overview" class="Admin-Product-Container-Overview">
+            <div class="Admin-Product-Container-Overview-Picture">
+                @if (Model.ProductDto.ProductImage != null && Model.ProductDto.ProductImage.Length > 0)
+                {
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductDto.ProductImage)">
+                }
             </div>
+            <div class="Admin-Product-Container-Overview-Category">Category: </div>
+            <div class="Admin-Product-Container-Overview-Name">Name: @Model.ProductDto.ProductName</div>
+            <div class="Admin-Product-Container-Overview-Price">Price: @Model.ProductDto.ProductPrice.ToString("c")</div>
+            <div class="Admin-Product-Container-Overview-Desc">
+                <label for="ProductDescription">Description</label>
+                <div class="Admin-Product-Container-Overview-Desc-Container">@Model.ProductDto.ProductDescription</div>
 
-            <div class="Admin-Product-Container-AddProduct-Category-LabelInput">
-                <label for="ChangeCategoryName">Category</label>
-                <select id="ChangeCategoryName" asp-for="ProductDto.ProductCategoryId">
-                    @foreach (var category in Model.ProductCategories)
-                    {
-                        <option value="@category.ProductCategoryId">@category.Name</option>
-                    }
-                </select>
             </div>
-
-            <div class="Admin-Product-Container-AddProduct-Price-LabelInput">
-                <label for="ChangePrice">Price</label>
-                <input id="ChangePrice" asp-for="ProductDto.ProductPrice" type="text" />
-                <span asp-validation-for="ProductDto.ProductPrice"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Desc">
-                <label for="ChangeDescription">Description</label>
-                <textarea id="ChangeDescription" asp-for="ProductDto.ProductDescription"></textarea>
-                <span asp-validation-for="ProductDto.ProductDescription"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Picture">
-                <label for="ChangeProductImage">Product Image</label>
-                <label id="ChangeProductImage">
-                    <input id="Admin-ChangeProduct-Picture" asp-for="ProductDto.PictureFile" type="file" accept=".jpg, .jpeg, .png" />
-                    
-                    @if (Model.ProductDto.ProductImage != null && Model.ProductDto.ProductImage.Length > 0)
-                    {
-                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductDto.ProductImage)">
-                    }
-
-                </label>
-                <span asp-validation-for="ProductDto.PictureFile"></span>
-            </div>
-
-            <div class="Admin-Product-Container-AddProduct-Btn-Container">
-                <button type="submit" class="Admin-Product-Container-AddProduct-Btn">Update Product</button>
-            </div>
-
         </div>
 
-    </form>
+        <form asp-controller="Admin" asp-action="EditProduct" method="post" enctype="multipart/form-data">
+
+            <div id="Container-AddProduct" class="Admin-Product-Container-AddProduct">
+                <div class="Admin-Product-Container-AddProduct-Product-LabelInput">
+                    <label for="AddProductName">Product Name</label>
+                    <input id="AddProductName" asp-for="ProductDto.ProductName" type="text" />
+                    <span asp-validation-for="ProductDto.ProductName"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Category-LabelInput">
+                    <label for="AddCategoryName">Category</label>
+                    <select id="AddCategoryName" asp-for="ProductDto.ProductCategoryId">
+                        @foreach (var category in Model.ProductCategories)
+                        {
+                            <option value="@category.ProductCategoryId">@category.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Price-LabelInput">
+                    <label for="AddPrice">Price</label>
+                    <input id="AddPrice" asp-for="ProductDto.ProductPrice" type="text" />
+                    <span asp-validation-for="ProductDto.ProductPrice"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Desc">
+                    <label for="AddDescription">Description</label>
+                    <textarea id="AddDescription" asp-for="ProductDto.ProductDescription"></textarea>
+                    <span asp-validation-for="ProductDto.ProductDescription"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Picture">
+                    <label for="AddProductImage">Product Image</label>
+                    <label id="AddProductImage">
+                        <input id="Admin-AddProduct-Picture" asp-for="ProductDto.PictureFile" type="file" accept=".jpg, .jpeg, .png" />
+                    </label>
+                    <span asp-validation-for="ProductDto.PictureFile"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Btn-Container">
+                    <button type="submit" class="Admin-Product-Container-AddProduct-Btn">Add Product</button>
+                </div>
+
+            </div>
+
+        </form>
+
+        <form asp-controller="Admin" asp-action="EditProduct" asp-route-ProductId="@Model.ProductDto.ProductId"
+              asp-route-isUpdate="@true" method="post" enctype="multipart/form-data">
+
+            <div id="Container-ChangeProduct" class="Admin-Product-Container-AddProduct">
+                <div class="Admin-Product-Container-AddProduct-Product-LabelInput">
+                    <label for="ChangeProductName">Product Name</label>
+                    <input id="ChangeProductName" asp-for="ProductDto.ProductName" type="text" />
+                    <span asp-validation-for="ProductDto.ProductName"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Category-LabelInput">
+                    <label for="ChangeCategoryName">Category</label>
+                    <select id="ChangeCategoryName" asp-for="ProductDto.ProductCategoryId">
+                        @foreach (var category in Model.ProductCategories)
+                        {
+                            <option value="@category.ProductCategoryId">@category.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Price-LabelInput">
+                    <label for="ChangePrice">Price</label>
+                    <input id="ChangePrice" asp-for="ProductDto.ProductPrice" type="text" />
+                    <span asp-validation-for="ProductDto.ProductPrice"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Desc">
+                    <label for="ChangeDescription">Description</label>
+                    <textarea id="ChangeDescription" asp-for="ProductDto.ProductDescription"></textarea>
+                    <span asp-validation-for="ProductDto.ProductDescription"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Picture">
+                    <label for="ChangeProductImage">Product Image</label>
+                    <label id="ChangeProductImage">
+                        <input id="Admin-ChangeProduct-Picture" asp-for="ProductDto.PictureFile" type="file" accept=".jpg, .jpeg, .png" />
+
+                        @if (Model.ProductDto.ProductImage != null && Model.ProductDto.ProductImage.Length > 0)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductDto.ProductImage)">
+                        }
+
+                    </label>
+                    <span asp-validation-for="ProductDto.PictureFile"></span>
+                </div>
+
+                <div class="Admin-Product-Container-AddProduct-Btn-Container">
+                    <button type="submit" class="Admin-Product-Container-AddProduct-Btn">Update Product</button>
+                </div>
+
+            </div>
+
+        </form>
 
 
 </div>
 
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
     $(document).ready(() => {
@@ -205,6 +208,21 @@
             AddPicture("Admin-ChangeProduct-Picture", "ChangeProductImage");
         });
 
+        $('#search').autocomplete({
+
+            source: function (request, response) {
+                $.getJSON("api/product/search?term=" + request.term, function (data) {
+                    response($.map(data.$values, function (values) {
+                        return values;
+                    }));
+                });
+            },
+            autoFocus: true,
+            delay: 300,
+            select: function (e, i) {
+                $("#search").val(i.item.val);
+            }
+        });
     });
 
 </script>

@@ -13,5 +13,6 @@ namespace BooksPlace.Data.Repository.Interfaces
         Dictionary<DateTime, int> GetDateTimeOrders();
         Dictionary<string, int> GetProductCategoryOrders();
         Dictionary<string, int> GetUserPromotionCategoryOrders();
+        decimal? GetStoreProffit();
     }
 }

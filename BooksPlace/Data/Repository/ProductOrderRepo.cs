@@ -69,5 +69,12 @@ namespace BooksPlace.Data.Repository
                     .GroupBy(u => u.Order.User.PromotionCategory.Name)
                     .ToDictionary(o => o.Key, o => o.Select(o => o.ProdOrder.OrderId).Count());
         }
+
+        public decimal? GetStoreProffit()
+        {
+            return BooksPlaceDbContext.ProductOrders
+                    .Include(p => p.Product)
+                    .Sum(p => p.Product.ProductPrice * p.Quantity);
+        }
     }
 }

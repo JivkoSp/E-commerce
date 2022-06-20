@@ -43,5 +43,21 @@ namespace BooksPlace.Controllers
                     }
                 );
         }
+
+        [HttpPost]
+        public IActionResult SearchResult(string ProductName)
+        {
+            int productId = 0;
+            try
+            {
+                productId =  unitOfWork.Product.GetProductId(ProductName);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("ProductView", "Product", new { productId = productId });
+        }
     }
 }

@@ -12,5 +12,7 @@ namespace BooksPlace.Data.Repository.Interfaces
         Dictionary<string, int> GetUsersReviewCount();
         Dictionary<string, int> GetUsersCommentCount();
         Dictionary<string, int> GetUsersRoleGrouping();
+        List<string> SearchUserNames(string searchTerm);
+        string GetUserId(string UserName);
     }
 }

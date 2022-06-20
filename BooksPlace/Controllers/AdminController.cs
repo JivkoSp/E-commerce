@@ -37,7 +37,16 @@ namespace BooksPlace.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View
+                (
+                    new AdminViewModel
+                    {
+                        UsersCount = userManager.Users.Count(),
+                        OrderCount = unitOfWork.Order.GetOrders().Count(),
+                        ProductReviewsCount = unitOfWork.Review.GetProductReviews(),
+                        StoreProffit = unitOfWork.ProductOrder.GetStoreProffit()
+                    }
+                );
         }
 
         [HttpGet]
@@ -399,6 +408,22 @@ namespace BooksPlace.Controllers
                 );
         }
 
+        [HttpPost]
+        public IActionResult SearchResult(string UserName)
+        {
+            string customerId;
+            try
+            {
+                customerId = unitOfWork.User.GetUserId(UserName);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Edit_Customer", new { customerId = customerId });
+        }
+
         public async Task<IActionResult> Edit_Customer(string customerId)
         {
             return View
@@ -480,6 +505,22 @@ namespace BooksPlace.Controllers
         {
             await userManager.DeleteAsync(await userManager.FindByIdAsync(customerId));
             return RedirectToAction("Manage_Customers");
+        }
+
+        public IActionResult Manage_Promotions()
+        {
+            return View(new PromotionDto());
+        }
+
+        [HttpPost]
+        public IActionResult Manage_Promotions(PromotionDto PromotionDto)
+        {
+            if(ModelState.IsValid)
+            {
+
+            }
+
+            return View();
         }
 
         [HttpPost]

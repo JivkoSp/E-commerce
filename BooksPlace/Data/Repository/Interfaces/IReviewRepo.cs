@@ -11,5 +11,6 @@ namespace BooksPlace.Data.Repository.Interfaces
         IEnumerable<Review> GetReviews(int productId);
         Review GetReview(int reviewId);
         bool isUserExising(string userId, int productId);
+        int GetProductReviews();
     }
 }

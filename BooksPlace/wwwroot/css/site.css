@@ -63,6 +63,12 @@ body {
     font-family: 'Times New Roman';
 }
 
+.Navbar-Search input{
+    width:100%;
+    height:100%;
+    background-color:inherit;
+}
+
 input[type=text], textarea {
     outline: none;
     border: 1px solid dimgray;
@@ -931,6 +937,12 @@ nav ul:last-child li:nth-child(5){
     background-color: dimgrey;
 }
 
+.Admin-Product-Container-Search input{
+    width:100%;
+    height:100%;
+    background-color:inherit;
+}
+
 .Admin-Product-Container-Overview {
     position: absolute;
     top: 20%;
@@ -1287,6 +1299,12 @@ nav ul:last-child li:nth-child(5){
     height: 5%;
     width: 70%;
     background-color: rgb(53, 51, 51);
+}
+
+.Manage_Customers-Search input{
+    width:100%;
+    height:100%;
+    background-color:inherit;
 }
 
 .Manage_Customers-Table {
@@ -2020,6 +2038,16 @@ nav ul:last-child li:nth-child(5){
     background-color:rgb(53, 51, 51);
 }
 
+.Admin-OverallStats-Users label{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    font-size:180%;
+    font-family:'Agency FB';
+    color:whitesmoke;
+}
+
 .Admin-OverallStats-Orders {
     position: absolute;
     margin: 2% 5% 5% 27%;
@@ -2027,6 +2055,16 @@ nav ul:last-child li:nth-child(5){
     height: 60%;
     box-shadow: dimgrey 2px 2px 5px;
     background-color: rgb(53, 51, 51);
+}
+
+.Admin-OverallStats-Orders label{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    font-size:180%;
+    font-family:'Agency FB';
+    color:whitesmoke;
 }
 
 .Admin-OverallStats-ProductReviews {
@@ -2038,6 +2076,16 @@ nav ul:last-child li:nth-child(5){
     background-color: rgb(53, 51, 51);
 }
 
+.Admin-OverallStats-ProductReviews label{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    font-size:180%;
+    font-family:'Agency FB';
+    color:whitesmoke;
+}
+
 .Admin-OverallStats-Profit {
     position: absolute;
     margin: 2% 5% 5% 71%;
@@ -2045,6 +2093,16 @@ nav ul:last-child li:nth-child(5){
     height: 60%;
     box-shadow: dimgrey 2px 2px 5px;
     background-color: rgb(53, 51, 51);
+}
+
+.Admin-OverallStats-Profit label{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    font-size:180%;
+    font-family:'Agency FB';
+    color:whitesmoke;
 }
 
 #Dashboard-usersPromoCatChart_div{
@@ -2062,7 +2120,7 @@ nav ul:last-child li:nth-child(5){
 #Dashboard-usersReviewChart_div{
     position:absolute;
     top:40vh;
-    left:14vw;
+    left:19vw;
 }
 
 #Dashboard-usersCommentsChart_div{
@@ -2074,7 +2132,7 @@ nav ul:last-child li:nth-child(5){
 #Dashboard-activeUsersHistoryChart_div{
     position:absolute;
     top:38vh;
-    left:37.5vw;
+    left:45vw;
 }
 
 #Dashboard-usersOrderChart_div {
@@ -2105,4 +2163,130 @@ nav ul:last-child li:nth-child(5){
     position:absolute;
     top:6vh;
     left:67vw;
+}
+
+.Manage-Promotions-Container{
+    position:absolute;
+    top:10vh;
+    left:25vw;
+    width:60vw;
+    height:80vh;
+    background-color:rgb(31, 30, 27);
+}
+
+.Manage-Promotions-Header{
+    position:absolute;
+    width:100%;
+    height:10%;
+    background-color:rgb(53, 51, 51);
+}
+
+.Manage-Promotions-Header label{
+    position:absolute;
+    top:20%;
+    width:100%;
+    font-size:160%;
+    font-family:'Agency FB';
+    text-align:center;
+    color:whitesmoke;
+}
+
+.Manage-Promotions-Body{
+    position:absolute;
+    top:10%;
+    width:100%;
+    height:90%;
+}
+
+.Manage-Promotions-Body-Name{
+    position:absolute;
+    top:5%;
+    left:20%;
+    width:60%;
+    height:15%;
+    background-color:dimgray;
+}
+
+.Manage-Promotions-Body-Name label{
+
+}
+
+.Manage-Promotions-Body-Name input{
+
+}
+
+.Manage-Promotions-Body-Code {
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    width: 60%;
+    height: 15%;
+    background-color: dimgray;
+}
+
+.Manage-Promotions-Body-Code label{
+
+}
+
+.Manage-Promotions-Body-Code input{
+
+}
+
+.Manage-Promotions-Body-ProductName {
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    width: 60%;
+    height: 15%;
+    background-color: dimgray;
+}
+
+.Manage-Promotions-Body-ProductName label{
+
+}
+
+.Manage-Promotions-Body-ProductName input{
+
+}
+
+.Manage-Promotions-Body-ProductCategory {
+    position: absolute;
+    top: 65%;
+    left: 20%;
+    width: 60%;
+    height: 15%;
+    background-color: dimgray;
+}
+
+.Manage-Promotions-Body-ProductCategory label{
+
+}
+
+.Manage-Promotions-Body-ProductCategory input{
+
+}
+
+.Manage-Promotions-Btn-Container {
+    position: absolute;
+    bottom: 0;
+    right:0;
+    width: 30%;
+    height: 10%;
+}
+
+.Manage-Promotions-Btn-Container button{
+    margin:5%;
+    padding:0.6em;
+    color:white;
+    border-color:black;
+    background-color:rgb(53, 51, 51);
+}
+
+.ui-autocomplete {
+    height: 200px;
+    color:whitesmoke !important;
+    background: rgb(53, 51, 51) !important;
+    border-width: 0 !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

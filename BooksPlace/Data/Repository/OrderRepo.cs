@@ -10,8 +10,15 @@ namespace BooksPlace.Data.Repository
 {
     public class OrderRepo : Repository<Order>, IOrderRepo
     {
+        private BooksPlaceDbContext BooksPlaceDbContext => dbContext as BooksPlaceDbContext;
+
         public OrderRepo(BooksPlaceDbContext dbContext):base(dbContext)
         {
+        }
+
+        public IQueryable<Order> GetOrders()
+        {
+            return BooksPlaceDbContext.Orders;
         }
     }
 }

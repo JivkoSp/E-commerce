@@ -36,5 +36,10 @@ namespace BooksPlace.Data.Repository
             return BooksPlaceDbContext.Reviews.Where(p => p.ProductId == productId)
                     .FirstOrDefault(u => u.UserId == userId) != null;
         }
+
+        public int GetProductReviews()
+        {
+            return BooksPlaceDbContext.Reviews.Count();
+        }
     }
 }
