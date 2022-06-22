@@ -6,28 +6,39 @@
 </div>
 
 <div class="Cart-Items-Container">
-    @foreach (var item in Model.Cart.CartItems)
-    {
-        <div class="Cart-Item">
-            <div class="Cart-Item-Picture">
 
+    @if (Model.Cart.CartItems.Count != 0)
+    {
+        @foreach (var item in Model.Cart.CartItems)
+        {
+            <div class="Cart-Item">
+                <div class="Cart-Item-Picture">
+
+                </div>
+                <div class="Cart-Item-Desc">
+                    <input type="hidden" value="@item.Product.ProductId" class="ProductId" />
+                    <h4>@item.Product.ProductName</h4>
+                    @item.Product.ProductDescription
+                </div>
+                <div class="Cart-Item-Quantity">
+                    <input type="number" min="1" step="1" value="@item.Quantity" class="SetQuantity">
+                </div>
+                <button class="Cart-Item-Remove">
+                    X
+                </button>
+                <div class="Cart-Item-Price">
+                    @item.Product.ProductPrice.ToString("c")
+                </div>
             </div>
-            <div class="Cart-Item-Desc">
-                <input type="hidden" value="@item.Product.ProductId" class="ProductId" />
-                <h4>@item.Product.ProductName</h4>
-                @item.Product.ProductDescription
-            </div>
-            <div class="Cart-Item-Quantity">
-                <input type="number" min="1" step="1" value="@item.Quantity" class="SetQuantity">
-            </div>
-            <button class="Cart-Item-Remove">
-                X
-            </button>
-            <div class="Cart-Item-Price">
-                @item.Product.ProductPrice.ToString("c")
-            </div>
+        }
+    }
+    else
+    {
+        <div class="Cart-Items-Container-Empty">
+            <h2>Your cart is empty</h2>
         </div>
     }
+
 </div>
 
 <div class="Cart-Items-Price-Tags">

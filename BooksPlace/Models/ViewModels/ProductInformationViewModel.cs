@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BooksPlace.Models.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace BooksPlace.Models.ViewModels
 {
     public class ProductInformationViewModel
     {
-        public Product Product { get; set; }
+        public ProductDto ProductDto { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
     }
 }

@@ -22,27 +22,26 @@ namespace BooksPlace.Models.Dtos
     {
         public int ProductId { get; set; }
 
-        [BindProperty(Name = "ProductDto.ProductName")]
         [Required]
         public string ProductName { get; set; }
 
-        [BindProperty(Name = "ProductDto.ProductDescription")]
         [Required]
         public string ProductDescription { get; set; }
 
-        [BindProperty(Name = "ProductDto.ProductPrice")]
         [Required]
         public decimal ProductPrice { get; set; }
 
-        [BindProperty(Name = "ProductDto.PictureFile")]
         [Required]
         public IFormFile PictureFile { get; set; }
 
         public byte[] ProductImage { get; set; }
 
-        [BindProperty(Name = "ProductDto.ProductCategoryId")]
         public int ProductCategoryId { get; set; }
 
         public bool isUpdate { get; set; }
+
+        public string PromoText { get; set; }
+
+        public decimal? NewPrice { get; set; }
     }
 }

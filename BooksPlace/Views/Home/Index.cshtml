@@ -7,18 +7,36 @@
         <ul>
             @foreach (var product in Model.Products)
             {
-                <li>
-                    <div class="Product-Grid-Image">
-                        @if(product.ProductImage != null && product.ProductImage.Length > 0)
-                        {
-                           <img src="data:image/jpeg;base64, @Convert.ToBase64String(product.ProductImage)">
-                        }
-                    </div>
-                    <h3>@product.ProductName</h3>
-                     <p>Price: @product.ProductPrice.ToString("c")</p>
-                     <a asp-controller="Product" asp-action="ProductView"
-                        asp-route-productId="@product.ProductId" class="Product-Grid-Button">View</a>         
-                </li>
+            <li>
+                <div class="Product-Grid-Image">
+                    @if (product.ProductImage != null && product.ProductImage.Length > 0)
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(product.ProductImage)">
+                    }
+                </div>
+
+                <h3 class="Product-Grid-ProductName">@product.ProductName</h3>
+                <p id="@product.ProductId" class="Product-Grid-ProductPrice">
+                    Price: @product.ProductPrice.ToString("c")
+                </p>
+
+                @if (product.NewPrice != null)
+                {
+                    <label id="@product.ProductId-PromoLabel" class="Product-Grid-PromoLabel">
+                        Old price @product.ProductPrice.ToString("c")<br />
+                       @product.PromoText <span>@product.NewPrice?.ToString("c")</span> 
+                    </label>
+
+                    <script src="~/lib/jquery/dist/jquery.js"></script>
+                    <script>
+                        $("#@product.ProductId").css("display", "none");
+                        $("#@product.ProductId-PromoLabel span").css("color", "yellow");
+                    </script>
+                }
+
+                <a asp-controller="Product" asp-action="ProductView"
+                   asp-route-productId="@product.ProductId" class="Product-Grid-Button">View</a>
+            </li>
             }
         </ul>
 

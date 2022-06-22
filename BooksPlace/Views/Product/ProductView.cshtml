@@ -56,10 +56,11 @@
         </form>
 
         <form asp-page="/Cart/Cart" asp-page-handler="AddToCart" method="post">
-            <input type="hidden" asp-for="Product.ProductId" />
-            <input type="hidden" asp-for="Product.ProductName" />
-            <input type="hidden" asp-for="Product.ProductPrice" />
-            <input type="hidden" asp-for="Product.ProductDescription" />
+            <input type="hidden" asp-for="ProductDto.ProductId" />
+            <input type="hidden" asp-for="ProductDto.ProductName" />
+            <input type="hidden" asp-for="ProductDto.ProductPrice" />
+            <input type="hidden" asp-for="ProductDto.NewPrice"/>
+            <input type="hidden" asp-for="ProductDto.ProductDescription" />
             <button type="submit" id="AddToCart"
                     class="Products-Information-Body-Button-Container-Btns">
                 Add to cart
@@ -72,7 +73,7 @@
 <div id="Review" class="Products-Information-Review">
 
     <div id="Review-Banner-Head" class="Review-Banner-Head">
-        @Model.Product.ProductName Reviews
+        @Model.ProductDto.ProductName Reviews
     </div>
     <div id="Review-Banner-Body" class="Review-Banner-Body">
         <p>See what others think of this book</p>
@@ -80,7 +81,7 @@
         <p>Write your own review</p>
     </div>
 
-    <form asp-controller="Product" asp-action="PostReview" asp-route-ProductId="@Model.Product.ProductId"
+    <form asp-controller="Product" asp-action="PostReview" asp-route-ProductId="@Model.ProductDto.ProductId"
           method="post" enctype="multipart/form-data">
 
         <div id="CreateReviewContainer" class="CreateReviewContainer">
@@ -103,7 +104,7 @@
                 <button type="submit" class="CreateReview-Btn">Save</button>
                 <button class="CreateReview-Btn">Delete</button>
                 <a asp-controller="Product" asp-action="ProductView"
-                   asp-route-productId="@Model.Product.ProductId" class="CreateReview-Btn">Back</a>
+                   asp-route-productId="@Model.ProductDto.ProductId" class="CreateReview-Btn">Back</a>
             </div>
 
         </div>

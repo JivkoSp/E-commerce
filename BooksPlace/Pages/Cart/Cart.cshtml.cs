@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BooksPlace.ExtensionMethods;
 using BooksPlace.Models;
+using BooksPlace.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -19,13 +20,19 @@ namespace BooksPlace.Pages.Cart
         }
 
 
-        public IActionResult OnPostAddToCart(Product product, int quantity = 1)
+        public IActionResult OnPostAddToCart(ProductDto ProductDto, int quantity = 1)
         {
             var cart = HttpContext.Session.GetFromSession<Models.Cart>("userCart") ?? new Models.Cart();
-            cart.AddItem(product, quantity);
+
+            if(ProductDto.NewPrice != null)
+            {
+                ProductDto.ProductPrice = (decimal)ProductDto.NewPrice;
+            }
+
+            cart.AddItem(ProductDto, quantity);
             HttpContext.Session.AddToSession<Models.Cart>("userCart", cart);
 
-            return RedirectToAction("ProductView", "Product", new { productId = product.ProductId });
+            return RedirectToAction("ProductView", "Product", new { productId = ProductDto.ProductId });
         }
 
         public JsonResult OnPostUpdateQuantity(int productId, int quantity)

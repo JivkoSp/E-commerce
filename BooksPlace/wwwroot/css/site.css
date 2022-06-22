@@ -156,6 +156,21 @@ input[type=text]:focus, textarea:focus {
     height:100%;
 }
 
+.Product-Grid-ProductName {
+    margin-top: 5%;
+}
+
+.Product-Grid-ProductPrice{
+    margin-top:5%;
+    height:1em;
+}
+
+.Product-Grid-PromoLabel {
+    display: block;
+    margin-top: 5%;
+    height: 1em;
+}
+
 .Product-Grid > ul {
     list-style: none;
     display: grid;
@@ -166,7 +181,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Product-Grid li {
-    height: 30vh;
+    height: 40vh;
     box-shadow: dimgray 10px 10px 5px;
     text-align: center;
     background-color: rgb(31, 30, 27);
@@ -180,12 +195,11 @@ input[type=text]:focus, textarea:focus {
     text-align: center;
     text-decoration: none;
     display: block;
-    margin-top: 2%;
+    margin-top: 3em;
     margin-left: 35%;
-    padding: 2%;
-    padding-top:3%;
+    padding: 3%;
+    padding-top: 3%;
     width: 30%;
-    height: 15%;
 }
 
 .Product-Grid-Button:hover{
@@ -626,12 +640,22 @@ input[type="file"] {
     background-color: rgb(53, 51, 51);
 }
 
-.Cart-Item{
-    width:90%;
-    height:40%;
-    margin:1% 2% 1% 5%;
-    position:relative;
-    background-color:rgb(60, 60, 60);
+.Cart-Items-Container-Empty{
+    position:absolute;
+    top:30%;
+    width:100%;
+}
+
+.Cart-Items-Container-Empty h2{
+    text-align:center;
+}
+
+.Cart-Item {
+    width: 90%;
+    height: 40%;
+    margin: 1% 2% 1% 5%;
+    position: relative;
+    background-color: rgb(60, 60, 60);
 }
 
 .Cart-Item-Picture{

@@ -1,6 +1,8 @@
-﻿using BooksPlace.Data.Repository.Interfaces;
+﻿using AutoMapper;
+using BooksPlace.Data.Repository.Interfaces;
 using BooksPlace.MessageBroker;
 using BooksPlace.Models;
+using BooksPlace.Models.Dtos;
 using BooksPlace.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,12 +23,15 @@ namespace BooksPlace.Controllers
         private IUnitOfWork unitOfWork;
         private UserManager<User> userManager;
         private RabbitMqHub mqHub;
+        private IMapper mapper;
 
-        public ProductController(IUnitOfWork unitOfWork, UserManager<User> userManager, RabbitMqHub mqHub)
+        public ProductController(IUnitOfWork unitOfWork, UserManager<User> userManager, 
+            RabbitMqHub mqHub, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.mqHub = mqHub;
+            this.mapper = mapper;
         }
 
         public IActionResult ProductView(int productId)
@@ -35,7 +40,7 @@ namespace BooksPlace.Controllers
                 (
                     new ProductInformationViewModel
                     {
-                        Product = unitOfWork.Product.GetProduct(productId),
+                        ProductDto = mapper.Map<ProductDto>(unitOfWork.Product.GetProduct(productId)),
                         Reviews = unitOfWork.Review.GetReviews(productId)
                     }
                 );

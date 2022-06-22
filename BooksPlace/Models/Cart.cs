@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BooksPlace.Models.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace BooksPlace.Models
     {
         public class CartItem
         { 
-            public Product Product { get; set; }
+            public ProductDto Product { get; set; }
             public int Quantity { get; set; }
         }
 
@@ -20,7 +21,7 @@ namespace BooksPlace.Models
             CartItems = new List<CartItem>();
         }
 
-        public void AddItem(Product product, int quantity)
+        public void AddItem(ProductDto product, int quantity)
         {
             try
             {

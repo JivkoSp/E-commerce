@@ -337,7 +337,7 @@ namespace BooksPlace.Controllers
                 (
                     new ProductViewModel
                     {
-                        Products = products,
+                        Products = mapper.Map<IEnumerable<ProductDto>>(products),
                         PageInfo = new PageInfo
                         {
                             PageNumber = pageNumber,
@@ -361,14 +361,14 @@ namespace BooksPlace.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProduct(ProductDto product)
+        public IActionResult EditProduct(ProductDto ProductDto)
         { 
             if(ModelState.IsValid)
             {
-                Product newProduct = mapper.Map<Product>(product);
-                newProduct.ProductCategory = unitOfWork.ProductCategory.GetProductCategory(product.ProductCategoryId);
+                Product newProduct = mapper.Map<Product>(ProductDto);
+                newProduct.ProductCategory = unitOfWork.ProductCategory.GetProductCategory(ProductDto.ProductCategoryId);
 
-                if (product.isUpdate)
+                if (ProductDto.isUpdate)
                 {
                     unitOfWork.Product.Update(newProduct);
                 }
@@ -376,14 +376,14 @@ namespace BooksPlace.Controllers
   
                 unitOfWork.SaveChanges();
 
-                product = mapper.Map<ProductDto>(newProduct);
+                ProductDto = mapper.Map<ProductDto>(newProduct);
             }
 
              return View
                  (
                     new EditProductViewModel
                     {
-                        ProductDto = product,
+                        ProductDto = ProductDto,
                         ProductCategories = unitOfWork.Product.GetProductCategories()
                     }
                  );

@@ -29,6 +29,7 @@ namespace BooksPlace.Data.Repository
         {
             return BooksPlaceDbContext.Products.Where(p => productCategory == null ||
                     p.ProductCategory.Name == productCategory)
+                    .Include(p => p.PriceOffer)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .OrderBy(p => p.ProductName);
@@ -49,6 +50,7 @@ namespace BooksPlace.Data.Repository
         public Product GetProduct(int id)
         {
             return BooksPlaceDbContext.Products.Where(p => p.ProductId == id)
+                .Include(p => p.PriceOffer)
                 .Include(p => p.ProductCategory).FirstOrDefault();
         }
 

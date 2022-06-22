@@ -1,4 +1,6 @@
-﻿using BooksPlace.Data.Repository.Interfaces;
+﻿using AutoMapper;
+using BooksPlace.Data.Repository.Interfaces;
+using BooksPlace.Models.Dtos;
 using BooksPlace.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,12 @@ namespace BooksPlace.Controllers
     {
         private int pageSize = 19;
         private IUnitOfWork unitOfWork;
+        private IMapper mapper;
 
-        public HomeController(IUnitOfWork unitOfWork)
+        public HomeController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         public IActionResult Index(string productCategory, int pageNumber=1)
@@ -33,7 +37,7 @@ namespace BooksPlace.Controllers
                 (
                     new ProductViewModel
                     {
-                        Products = products,
+                        Products = mapper.Map<IEnumerable<ProductDto>>(products),
                         PageInfo = new PageInfo
                         {
                             PageNumber = pageNumber,
