@@ -107,6 +107,7 @@ namespace BooksPlace
             app.UseRouting();
             app.UseAuthorization();
             app.UseMiddleware<CurrentUsersMiddleware>();
+            app.UseMiddleware<UserStatusMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

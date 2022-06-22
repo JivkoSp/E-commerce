@@ -9,5 +9,6 @@ namespace BooksPlace.Data.Repository.Interfaces
     public interface IOrderRepo : IRepository<Order>
     {
         IQueryable<Order> GetOrders();
+        IEnumerable<Order> GetOrdersForUser(string userId);
     }
 }

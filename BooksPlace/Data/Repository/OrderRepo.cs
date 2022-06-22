@@ -20,5 +20,10 @@ namespace BooksPlace.Data.Repository
         {
             return BooksPlaceDbContext.Orders;
         }
+
+        public IEnumerable<Order> GetOrdersForUser(string userId)
+        {
+            return BooksPlaceDbContext.Orders.Where(o => o.UserId == userId);
+        }
     }
 }
