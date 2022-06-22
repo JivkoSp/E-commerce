@@ -13,22 +13,44 @@
         </div>
         <div class="Manage-Promotions-Body">
             <div class="Manage-Promotions-Body-Name">
-                <label for="PromotionName">Promotion name</label>
-                <input id="PromotionName" type="text" asp-for="ProductName"/>
+                <label for="PromotionName">Promotion text</label>
+                <input id="PromotionName" type="text" asp-for="PromotionText"/>
+            </div>
+            <div class="Manage-Promotions-Body-PromotionCategory">
+                <label>Promotion category</label>
+                <select id="PromoCat" asp-for="OfferId">
+                    @foreach (var promoCat in Model.PromotionCategories)
+                    {
+                        <option value="@promoCat.Offer.OfferId">@promoCat.Name</option>
+                    }
+                </select>
+
+                <label class="PromotionCategory-Choise-Label">Promotion percent</label>
+                <input id="PromotionCategory-Choise-Input" type="text" asp-for="PromotionPercent" />
             </div>
             <div class="Manage-Promotions-Body-Code">
                 <label for="ProductCode">Product code</label>
                 <input id="ProductCode" type="text" asp-for="PromotionCode"/>
             </div>
-            <div class="Manage-Promotions-Body-ProductName">
-                <label for="productName"></label>
-                <input type="text" asp-for="ProductName"/>
-                <input type="radio" name="update-target" id="productName"/>
+            <div class="Manage-Promotions-Body-PromotionType">
+                <label>Promotion type</label>
+                <select id="PromoType">
+                    <option value="Product">Product</option>
+                    <option value="ProductCat">Product category</option>
+                </select>
             </div>
-            <div class="Manage-Promotions-Body-ProductCategory">
-                <label for="productCategory"></label>
-                <input type="text" asp-for="ProductCategory"/>
-                <input type="radio" name="update-target" id="productCategory"/>
+            <div id="ProductNameContainer" class="Manage-Promotions-Body-ProductName">
+                <label for="productName">Product name</label>
+                <input id="ProductNameContainer-Input" type="text" asp-for="ProductName"/>
+            </div>
+            <div id="ProductCategoryContainer" class="Manage-Promotions-Body-ProductCategory">
+                <label for="productCategory">Product category</label>
+                <select asp-for="ProductCategoryId">
+                    @foreach(var promotion in Model.ProductCategories)
+                    {
+                        <option value="@promotion.ProductCategoryId">@promotion.Name</option>
+                    }
+                </select>
             </div>
         </div>
 
@@ -40,4 +62,28 @@
     </div>
 
 </form>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    $("document").ready(() => {
+
+        $("#PromoType").click(() => {
+
+            if ($("#PromoType").val() == "Product") {
+
+                $("#ProductNameContainer").css("display", "block");
+                $("#ProductCategoryContainer").css("display", "none");
+            }
+            else {
+                $("#ProductNameContainer").css("display", "none");
+                $("#ProductCategoryContainer").css("display", "block");
+                $("#ProductNameContainer-Input").val("");
+            }
+        });
+
+    });
+
+</script>
 

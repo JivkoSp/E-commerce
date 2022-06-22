@@ -27,6 +27,7 @@ namespace BooksPlace.ExtensionMethods
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
             services.AddScoped<IProductOrderRepo, ProductOrderRepo>();
+            services.AddScoped<IPriceOfferRepo, PriceOfferRepo>();
         }
 
 

@@ -63,5 +63,10 @@ namespace BooksPlace.Data.Repository
             return BooksPlaceDbContext.Products.Where(p => p.ProductName == productName)
                     .Select(p => p.ProductId).FirstOrDefault();
         }
+
+        public IEnumerable<Product> GetProducts(int productCategoryId)
+        {
+            return BooksPlaceDbContext.Products.Where(p => p.ProductCategoryId == productCategoryId);
+        }
     }
 }

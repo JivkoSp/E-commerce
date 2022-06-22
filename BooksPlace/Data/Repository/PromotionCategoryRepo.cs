@@ -19,7 +19,8 @@ namespace BooksPlace.Data.Repository
 
         public IEnumerable<PromotionCategory> GetPromotionCategories()
         {
-            return BooksPlaceDbContext.PromotionCategories;
+            return BooksPlaceDbContext.PromotionCategories
+                    .Include(p => p.Offer);
         }
 
         public PromotionCategory GetPromotion(int promotionId)

@@ -17,6 +17,7 @@ namespace BooksPlace.Data.Repository.Interfaces
         IUserRepo User { get; }
         IOrderRepo Order { get; }
         IProductOrderRepo ProductOrder { get; }
+        IPriceOfferRepo PriceOffer { get; }
 
         void SaveChanges();
     }

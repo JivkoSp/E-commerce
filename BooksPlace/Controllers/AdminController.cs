@@ -509,7 +509,14 @@ namespace BooksPlace.Controllers
 
         public IActionResult Manage_Promotions()
         {
-            return View(new PromotionDto());
+            return View
+                (
+                    new PromotionDto 
+                    { 
+                        PromotionCategories = unitOfWork.PromotionCategory.GetPromotionCategories(),
+                        ProductCategories = unitOfWork.Product.GetProductCategories()
+                    }
+                );
         }
 
         [HttpPost]
@@ -517,10 +524,60 @@ namespace BooksPlace.Controllers
         {
             if(ModelState.IsValid)
             {
+                PromotionDto.PromotionPercent /= 100;
 
+                if (!string.IsNullOrEmpty(PromotionDto.ProductName))
+                {
+                    int productId = unitOfWork.Product.GetProductId(PromotionDto.ProductName);
+
+                    if(productId == 0)
+                    {
+                        ModelState.AddModelError("productNotExisting", "This product does not exist!");
+                    }
+                    else
+                    {
+                        var product = unitOfWork.Product.GetProduct(productId);
+
+                        PriceOffer newPriceOffer = new PriceOffer
+                        {
+                            PromoText = PromotionDto.PromotionText,
+                            NewPrice = product.ProductPrice - (decimal)(product.ProductPrice * PromotionDto.PromotionPercent),
+                            ProductId = productId,
+                            OfferId = (int)PromotionDto.OfferId
+                        };
+
+                        unitOfWork.PriceOffer.Add(newPriceOffer);
+                    }
+                }
+                else
+                {
+                    var products = unitOfWork.Product.GetProducts(PromotionDto.ProductCategoryId);
+
+                    foreach(var product in products)
+                    {
+                        PriceOffer newPriceOffer = new PriceOffer
+                        {
+                            PromoText = PromotionDto.PromotionText,
+                            NewPrice = product.ProductPrice - (decimal)(product.ProductPrice * PromotionDto.PromotionPercent),
+                            ProductId = product.ProductId,
+                            OfferId = (int)PromotionDto.OfferId
+                        };
+
+                        unitOfWork.PriceOffer.Add(newPriceOffer);
+                    }
+                }
+
+                unitOfWork.SaveChanges();
             }
 
-            return View();
+            return View
+                (
+                      new PromotionDto
+                      {
+                          PromotionCategories = unitOfWork.PromotionCategory.GetPromotionCategories(),
+                          ProductCategories = unitOfWork.Product.GetProductCategories()
+                      }
+                );
         }
 
         [HttpPost]

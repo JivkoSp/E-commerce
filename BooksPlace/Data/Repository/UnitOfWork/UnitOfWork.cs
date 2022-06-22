@@ -20,12 +20,13 @@ namespace BooksPlace.Data.Repository.UnitOfWork
         public IBannedUserRepo BannedUser { get; private set; }
         public IUserRepo User { get; private set; }
         public IOrderRepo Order { get; private set; }
-        public IProductOrderRepo ProductOrder { get; }
+        public IProductOrderRepo ProductOrder { get; private set; }
+        public IPriceOfferRepo PriceOffer { get; private set; }
 
         public UnitOfWork(BooksPlaceDbContext dbContext, IProductRepo product, IReviewRepo review,
             IReviewCommentRepo reviewComment, IProductCategoryRepo productCategory,
             IPromotionCategoryRepo promotionCategory, IBannedUserRepo bannedUser, 
-            IUserRepo user, IOrderRepo order, IProductOrderRepo productOrder)
+            IUserRepo user, IOrderRepo order, IProductOrderRepo productOrder, IPriceOfferRepo priceOffer)
         {
             this.dbContext = dbContext;
             Product = product;
@@ -37,6 +38,7 @@ namespace BooksPlace.Data.Repository.UnitOfWork
             User = user;
             Order = order;
             ProductOrder = productOrder;
+            PriceOffer = priceOffer;
         }
 
         public void SaveChanges()
