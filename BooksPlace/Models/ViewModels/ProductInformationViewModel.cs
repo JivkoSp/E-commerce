@@ -13,5 +13,6 @@ namespace BooksPlace.Models.ViewModels
     {
         public ProductDto ProductDto { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<ProductDto> OrderedProducts { get; set; }
     }
 }

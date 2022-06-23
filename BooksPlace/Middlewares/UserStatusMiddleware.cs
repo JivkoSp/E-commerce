@@ -29,7 +29,7 @@ namespace BooksPlace.Middlewares
 
                 switch(orders.Count())
                 {
-                    case 3:
+                    case 10:
                         {
                             if(promotion.Name == "NormalUser")
                             {
@@ -45,6 +45,7 @@ namespace BooksPlace.Middlewares
                             {
                                 user.PromotionCategoryId = 3;
                             }
+
                             break;
                         }           
                 }

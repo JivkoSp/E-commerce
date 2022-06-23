@@ -84,6 +84,8 @@ namespace BooksPlace
                 configAction.AddProfile<UserProfile>();
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddLiveReload();
         }
 

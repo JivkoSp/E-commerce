@@ -36,12 +36,17 @@ namespace BooksPlace.Controllers
 
         public IActionResult ProductView(int productId)
         {
+            var product = unitOfWork.Product.GetProduct(productId);
+            var succestedProducts = unitOfWork.Product.
+                GetProductsOrderedByOrdersAndReviews(product.ProductCategory.Name);
+
             return View
                 (
                     new ProductInformationViewModel
                     {
-                        ProductDto = mapper.Map<ProductDto>(unitOfWork.Product.GetProduct(productId)),
-                        Reviews = unitOfWork.Review.GetReviews(productId)
+                        ProductDto = mapper.Map<ProductDto>(product),
+                        Reviews = unitOfWork.Review.GetReviews(productId),
+                        OrderedProducts = mapper.Map<IEnumerable<ProductDto>>(succestedProducts)
                     }
                 );
         }

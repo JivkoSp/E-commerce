@@ -295,6 +295,25 @@ input[type=text]:focus, textarea:focus {
     box-shadow: 0 0 5px darkgreen;
 }
 
+.Products-Information-Suggestions-Title{
+    position:absolute;
+    top:65vh;
+    right:2vw;
+    width:40vw;
+    height:10vh;
+    background-color:rgb(42, 34, 34);
+}
+
+.Products-Information-Suggestions-Title label{
+    position:absolute;
+    top:20%;
+    width:100%;
+    font-size:120%;
+    letter-spacing:2px;
+    text-align:center;
+    color:whitesmoke;
+}
+
 .Products-Information-Suggestions {
     background-color: rgba(83, 76, 76, 0.96);
     width: 40vw;
@@ -302,12 +321,71 @@ input[type=text]:focus, textarea:focus {
     position: absolute;
     bottom: 3vh;
     right: 2vw;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+.Products-Information-Suggestions::before, .Products-Information-Suggestions::after {
+    position:absolute;
+    top:0;
+    width:5rem;
+    height:100%;
+    content:"";
+    z-index:1;
+}
+
+.Products-Information-Suggestions::before{
+    left:0;
+    background: linear-gradient(to right, rgb(31, 30, 27), transparent 100%);
+}
+
+.Products-Information-Suggestions::after{
+    right:0;
+    background: linear-gradient(to left, rgb(31, 30, 27), transparent 100%);
+}
+
+.Products-Information-Suggestions::-webkit-scrollbar {
+    display: none;
+}
+
+.Products-Information-Suggestions-Item-Container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 40%;
+    text-decoration:none;
+    box-shadow: rgb(42, 34, 34) 5px 5px 7px;
+    background-color: rgb(42, 34, 34);
+    animation:scrolling 16s linear infinite;
+}
+
+@keyframes scrolling{
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-112vw);
+    }
+}
+
+.Products-Information-Suggestions-Item {
+    margin-top: 3em;
+    text-align: center;
+    font-size: 120%;
+    color: whitesmoke;
+    transition: all 0.2s linear;
+}
+
+.Products-Information-Suggestions-Item:hover{
+    color:rgb(214, 77, 77);
 }
 
 .Products-Information-Review {
     background-color: rgb(53, 51, 51);
     width: 40vw;
-    height: 62vh;
+    height: 50vh;
     position: absolute;
     top: 12vh;
     right: 2vw;
@@ -318,21 +396,21 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Review-Banner-Head{
-    width:50%;
+    width:100%;
     height:10%;
-    font-size:2em;
+    font-size:200%;
+    text-align:center;
     position:absolute;
     top:5vh;
-    left:30%;
 }
 
 .Review-Banner-Body {
-    width: 85%;
+    width: 100%;
     height: 30%;
-    font-size: 1.5em;
+    text-align:center;
+    font-size: 150%;
     position: absolute;
-    top: 20vh;
-    left: 12%;
+    top: 17vh;
 }
 
 .CreateReviewContainer{
@@ -446,14 +524,15 @@ input[type="file"] {
 .Products-Information-Review-Btns-Container {
     position: absolute;
     display: flex;
+    gap:1em;
     margin: 5%;
     bottom: 10%;
-    left: 15%;
+    margin-top:10%;
+    left:30%;
 }
 
 .Products-Information-Review-Btns {
     padding: 2%;
-    margin:10px;
     border-color:black;
     color:rgb(209, 209, 209);
     background-color: rgb(75, 71, 71);
