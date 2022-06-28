@@ -1,12 +1,29 @@
 ﻿@page
 @model BooksPlace.Pages.Register.SignUpModel
 
-    <form method="post">
+<form method="post" class="Register-Form">
+    <div class="Register-Form-Header">
+        <label>Sign up</label>
+    </div>
+    <div class="Register-Form-UserName-Container">
         <label for="UserName">Username or email address </label>
-        <input id="UserName" type="text" asp-for="UserName"/> <br />
+        <input id="UserName" type="text" asp-for="UserName" placeholder="User name"/> <br />
+    </div>
+    <div class="Register-Form-Email-Container">
         <label for="Email">Email address </label>
-        <input id="Email" type="email" asp-for="Email" /> <br />
+        <input id="Email" type="email" asp-for="Email"  placeholder="Email"/> <br />
+    </div>
+    <div class="Register-Form-Password-Container">
         <label for="Password">Password </label>
-        <input id="Password" type="password" asp-for="Password" /><br />
+        <input id="Password" type="password" asp-for="Password" placeholder="Password"/><br />
+    </div>
+    <div class="Register-Form-ConfirmPassword-Container">
+        <label for="ConfirmPassword">Confirm password </label>
+        <input id="ConfirmPassword" type="password" asp-for="ConfirmPassword" placeholder="Confirm password" /><br />
+    </div>
+
+    <div class="Register-Form-Btn-Container">
         <button type="submit">Sign up</button>
-    </form>
+        <a asp-page="/Login/SignIn">Sign in</a>
+    </div>
+</form>

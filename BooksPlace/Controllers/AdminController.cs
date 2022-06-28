@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 namespace BooksPlace.Controllers
 {
+    [Authorize(Policy = "AdminControllerAuthPolicy")]
     public class AdminController : Controller
     {
         private int pageSize = 19;
@@ -329,9 +330,9 @@ namespace BooksPlace.Controllers
             return View();
         }
 
-        public IActionResult Catalog_Products(int pageNumber = 1)
+        public async Task<IActionResult> Catalog_Products(int pageNumber = 1)
         {
-            var products = unitOfWork.Product.GetViewProducts(null, pageNumber, pageSize);
+            var products = await unitOfWork.Product.GetViewProducts(null, pageNumber, pageSize);
 
             return View
                 (
@@ -350,12 +351,13 @@ namespace BooksPlace.Controllers
 
         public IActionResult EditProduct(int productId)
         {
+
           return View
                 (
                     new EditProductViewModel
                     {
                         ProductDto = mapper.Map<ProductDto>(unitOfWork.Product.GetProduct(productId)),
-                        ProductCategories = unitOfWork.Product.GetProductCategories()
+                        ProductCategories = unitOfWork.ProductCategory.GetCategories()
                     }
                 );
         }
@@ -389,6 +391,7 @@ namespace BooksPlace.Controllers
                  );
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Manage_Customers()
         {
             List<UserDto> userDtos = new List<UserDto>();

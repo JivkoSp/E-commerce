@@ -141,16 +141,14 @@ namespace BooksPlace.Migrations
 
                     b.Property<string>("ProductDescription")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("ProductImage")
                         .HasColumnType("image");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(8,2)");

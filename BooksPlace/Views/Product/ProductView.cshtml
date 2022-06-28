@@ -2,49 +2,15 @@
 
 <div class="Products-Information-Body">
     <div class="Products-Information-Body-Title">
-        Some title
+        @Model.ProductDto.ProductName
     </div>
     <div class="Products-Information-Body-Description">
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
-        sdfklsjfkldsjfdjsfkldsjfksjdflkjslkfjslfj
-        sdfjdsklfjskdljfklsjdfklsjdfkjdslkfjsldkjflkssdfjslkjf
-        sfklsdjfksdjfklsjdfksjdfkjsdklfjskdjfskldfjslkfjsdkljfksdjfksdfjsdklfjsdklfjsdklfjsdkfjfgfgfgfgfgfgfgfgfgfg
-        sdfjdjfksjfkjsdfjdslkjfdsjfljsdfjlkdsjf
-        jsdfjsdlkfjsdlf
+
+        <div class="Products-Information-Body-Description-Picture">
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProductDto.ProductImage)">
+        </div>
+
+        @Model.ProductDto.ProductDescription
     </div>
     <div class="Products-Information-Body-Button-Container">
 
@@ -191,12 +157,14 @@
         });
 
         function insertReviewInfo() {
+
             @if (Model.Reviews.Any())
             {
                 @:let element = document.getElementById("Review");
+
                 @foreach (var review in Model.Reviews)
                 {
-                  @:element.innerHTML += `<div class="Review-Columns">
+                  @:element.innerHTML += `<div id="Review-Columns" class="Review-Columns">
                      @:<div class="Review-Columns-col1">
                      @:<div class="Review-Columns-col1-Head"></div>
                      @:<div class="Review-Columns-col1-Body">
@@ -206,6 +174,7 @@
                         @:</div>
                         @:<div class="Review-Columns-col1-Body-Content">@review.ReviewContent</div>
                      @:</div>
+                     @:<div class="Review-Columns-col1-Btn"><button id="Review-Columns-col1-Btn">Back</button></div>
                      @:</div>
 
                     @:<div class="Review-Columns-col2">
@@ -230,7 +199,7 @@
                                     @:</div>
                                   }
                             @:</div>
-                            @:<input type="text" class="Container-AddComment" />
+                            @:<input type="text" class="Container-AddComment" placeholder="Write something"/>
                             @:<input type="hidden" class="ReviewId" value="@review.ReviewId" />
                             @:<button class="AddComment-Btn">Comment</button>
                       @:</div>
@@ -306,6 +275,23 @@
             });
             console.log("pulling data..");
         }, 5000);
+    });
+
+
+    document.addEventListener('click', (e) => {
+
+        if (e.target && e.target.id == 'Review-Columns-col1-Btn') {
+
+            let element = document.getElementById("Review");
+
+            document.getElementById("Review-Banner-Head").style.display = "block";
+            document.getElementById("Review-Banner-Body").style.display = "block";
+            document.getElementById("WriteReview").style.display = "block";
+            document.getElementById("SeeReviews").style.display = "block";
+            element.style.width = "40vw";
+            element.style.height = "50vh";
+        }
+
     });
 
 </script>

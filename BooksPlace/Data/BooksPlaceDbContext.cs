@@ -82,11 +82,9 @@ namespace BooksPlace.Data
                 entity.ToTable("Product");
 
                 entity.Property(p => p.ProductName)
-                .HasMaxLength(50)
                 .IsRequired();
 
                 entity.Property(p => p.ProductDescription)
-                .HasMaxLength(100)
                 .IsRequired();
 
                 entity.Property(p => p.ProductPrice)

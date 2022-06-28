@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BooksPlace.Data.RabbitConnection;
 using BooksPlace.Data.Repository.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace BooksPlace.Pages.Login
 {
@@ -18,9 +19,11 @@ namespace BooksPlace.Pages.Login
         private IBooksPlaceConnectionFactory factory;
 
         [BindProperty]
+        [Required(ErrorMessage = "Incorrect username or password.")]
         public string UserName { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Incorrect username or password.")]
         public string Password { get; set; }
 
         public SignInModel(SignInManager<User> signInManager, IBooksPlaceConnectionFactory factory)
@@ -35,37 +38,46 @@ namespace BooksPlace.Pages.Login
 
         public async Task<IActionResult> OnPost()
         {
-            var res = await signInManager.PasswordSignInAsync(UserName, Password, false, false);
-
-            if(res.Succeeded)
+            if(ModelState.IsValid)
             {
-                var connection = factory.GetConnection();
-                using var channel = connection.CreateModel();
+                var res = await signInManager.PasswordSignInAsync(UserName, Password, false, false);
 
-                channel.QueueDeclare
-                    (
-                        queue: UserName,
-                         durable: false,
-                         exclusive: false,
-                         autoDelete: false,
-                         arguments: null
-                    );
+                if (res.Succeeded)
+                {
+                    var connection = factory.GetConnection();
+                    using var channel = connection.CreateModel();
 
-                channel.ExchangeDeclare
-                    (
-                        exchange: "BooksPlaceExchange",
-                        type: "direct",
-                        durable: false,
-                        autoDelete: false,
-                        arguments: null
-                    );
+                    channel.QueueDeclare
+                        (
+                            queue: UserName,
+                             durable: false,
+                             exclusive: false,
+                             autoDelete: false,
+                             arguments: null
+                        );
 
-                channel.QueueBind(queue: UserName, exchange: "BooksPlaceExchange", routingKey: "key1", arguments: null);
+                    channel.ExchangeDeclare
+                        (
+                            exchange: "BooksPlaceExchange",
+                            type: "direct",
+                            durable: false,
+                            autoDelete: false,
+                            arguments: null
+                        );
 
-                return Redirect("/");
+                    channel.QueueBind(queue: UserName, exchange: "BooksPlaceExchange", routingKey: "key1", arguments: null);
+
+                    return Redirect("/");
+                }
             }
 
             return Page();
+        }
+
+
+        public async Task OnPostLogOut()
+        {
+            await signInManager.SignOutAsync();
         }
     }
 }

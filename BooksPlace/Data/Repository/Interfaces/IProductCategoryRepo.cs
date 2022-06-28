@@ -9,5 +9,6 @@ namespace BooksPlace.Data.Repository.Interfaces
     public interface IProductCategoryRepo : IRepository<ProductCategory>
     {
         ProductCategory GetProductCategory(int CategoryId);
+        IEnumerable<ProductCategory> GetCategories();
     }
 }

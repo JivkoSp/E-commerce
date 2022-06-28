@@ -1,0 +1,21 @@
+﻿@page
+@model BooksPlace.Pages.AccessDenied.AccessDeniedModel
+
+    <section class="AccessDeniedContainer">
+        <h2>Access Denied</h2>
+        <hr />
+        <label>🚫🚫🚫🚫</label>
+        <h3>You dont have permission to access this content.</h3>
+
+        <div class="AccessDenied-Btn">
+
+            @if (ViewContext.HttpContext.User.IsInRole("Staff"))
+            {
+                <a asp-controller="Admin">Go back to admin page</a>
+            }
+
+            <a asp-controller="Home">Go to home page</a>
+        </div>
+
+    </section>
+

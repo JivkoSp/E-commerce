@@ -83,11 +83,25 @@ input[type=text]:focus, textarea:focus {
     color: rgb(209, 209, 209);
 }
 
+.Navbar-LogOut{
+    position:absolute;
+    top:30%;
+    right:2%;
+    padding:0.4em;
+    color:whitesmoke;
+    background-color:rgb(75, 71, 71);
+    border-color:black;
+}
+
+.Navbar-LogOut:hover{
+    background-color:dimgray;
+}
+
 .Navigation-Menu-Container {
     background-color: rgb(53, 51, 51);
     color: white;
     width: 12%;
-    min-width:110px;
+    min-width: 110px;
     height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -263,14 +277,24 @@ input[type=text]:focus, textarea:focus {
     top: 15vh;
 }
 
+.Products-Information-Body-Description-Picture{
+    width:40%;
+    margin:0 1% 1% 0;
+    display:inline-block;
+}
+
+.Products-Information-Body-Description-Picture img {
+    max-width: 100%;
+}
+
 .Products-Information-Body-Button-Container {
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
     position: absolute;
     bottom: 8vh;
-    display:flex;
-    justify-content:right;
+    display: flex;
+    justify-content: right;
 }
 
 .Products-Information-Body-Button-Container-Btns{
@@ -610,6 +634,17 @@ input[type="file"] {
     word-wrap: break-word;
 }
 
+.Review-Columns-col1-Btn{
+    position:absolute;
+    bottom:5%;
+    right:5%;
+}
+
+.Review-Columns-col1-Btn button{
+    padding:0.5em;
+    background-color:rgb(209, 209, 209);
+}
+
 .Review-Columns-col2-Comment-Container-Parent {
     height: 80%;
     overflow-y: auto;
@@ -670,6 +705,22 @@ input[type="file"] {
 
 .Comment-Container-Foot-Responce-Container:hover .Comment-Container-Foot-Responce{
     display:block;
+}
+
+.Container-AddComment{
+    margin-left:7%;
+    width:62%;
+    height:5%;
+    border-color:black;
+    color:white;
+    background-color:rgb(31, 30, 27);
+}
+
+.AddComment-Btn {
+    padding: 0.3em;
+    color: white;
+    background-color: rgb(75, 71, 71);
+    border-color:black;
 }
 
 .CartInformation {
@@ -1407,6 +1458,7 @@ nav ul:last-child li:nth-child(5){
 .Manage_Customers-Search input{
     width:100%;
     height:100%;
+    color:white;
     background-color:inherit;
 }
 
@@ -1414,9 +1466,9 @@ nav ul:last-child li:nth-child(5){
     position: absolute;
     top: 25%;
     width: 100%;
-    height:75%;
-    overflow-y:auto;
-    overflow-x:hidden;
+    height: 75%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .Manage_Customers-Table table{
@@ -1438,6 +1490,7 @@ nav ul:last-child li:nth-child(5){
     padding:1%;
     font-size:90%;
     font-family:'Agency FB';
+    border-bottom: 1px solid black;
     color:whitesmoke;
     background-color:rgb(53, 51, 51);
 }
@@ -2492,4 +2545,324 @@ nav ul:last-child li:nth-child(5){
     border-width: 0 !important;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.SignIn-Form {
+    position: relative;
+    top: 10vh;
+    left: 27vw;
+    width: 50vw;
+    height: 60vh;
+    box-shadow: rgb(31, 30, 27) 10px 10px 10px;
+    background-color: rgb(31, 30, 27);
+}
+
+.SignIn-Form-Header{
+    position:absolute;
+    top:8%;
+    width:100%;
+}
+
+.SignIn-Form-Header label{
+    position:absolute;
+    width:100%;
+    font-size:180%;
+    text-align:center;
+    color:whitesmoke;
+}
+
+.SignIn-Form button{
+    position:absolute;
+    bottom:3%;
+    right:3%;
+    padding:0.5em;
+    border-radius:5px;
+    background-color:rgb(209, 209, 209);
+}
+
+.SignIn-Form button:hover{
+    border-color:black;
+    color:white;
+    background-color:darkblue;
+}
+
+.SignIn-Form-UserName-Container{
+    position:absolute;
+    top:25%;
+    left:10%;
+    width:80%;
+    height:20%;
+    border-radius:20px;
+    background-color:rgb(42, 34, 34);
+}
+
+.SignIn-Form-UserName-Container label{
+    position:absolute;
+    top:5%;
+    width:100%;
+    font-size:110%;
+    color:whitesmoke;
+    text-align:center;
+}
+
+.SignIn-Form-UserName-Container input{
+    position:absolute;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:30%;
+}
+
+.SignIn-Form-Password-Container {
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    width: 80%;
+    height: 20%;
+    border-radius: 20px;
+    background-color: rgb(42, 34, 34);
+}
+
+.SignIn-Form-Password-Container label{
+    position:absolute;
+    top:5%;
+    width:100%;
+    font-size:110%;
+    color:whitesmoke;
+    text-align:center;
+}
+
+.SignIn-Form-Password-Container input{
+    position:absolute;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:30%;
+}
+
+.SignIn-Footer {
+    position: absolute;
+    top: 72vh;
+    left: 27vw;
+    width: 50vw;
+    text-align:center;
+    font-size: 110%;
+}
+
+.SignIn-Footer a:hover{
+   color:darkblue;
+}
+
+.Register-Form {
+    position: relative;
+    top: 5vh;
+    left: 27vw;
+    width: 50vw;
+    height: 90vh;
+    box-shadow: rgb(31, 30, 27) 10px 10px 10px;
+    background-color: rgb(31, 30, 27);
+}
+
+.Register-Form-Header {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+}
+
+.Register-Form-Header label{
+    position:absolute;
+    width:100%;
+    font-size:180%;
+    text-align:center;
+    color:whitesmoke;
+}
+
+.Register-Form-UserName-Container {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 80%;
+    height: 14%;
+    border-radius: 20px;
+    background-color: rgb(42, 34, 34);
+}
+
+.Register-Form-UserName-Container label{
+    position:absolute;
+    top:5%;
+    width:100%;
+    font-size:110%;
+    color:whitesmoke;
+    text-align:center;
+}
+
+.Register-Form-UserName-Container input{
+    position:absolute;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:30%;
+}
+
+.Register-Form-Email-Container {
+    position: absolute;
+    top: 34%;
+    left: 10%;
+    width: 80%;
+    height: 14%;
+    border-radius: 20px;
+    background-color: rgb(42, 34, 34);
+}
+
+.Register-Form-Email-Container label{
+    position:absolute;
+    top:5%;
+    width:100%;
+    font-size:110%;
+    color:whitesmoke;
+    text-align:center;
+}
+
+.Register-Form-Email-Container input{
+    position:absolute;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:30%;
+}
+
+.Register-Form-Password-Container {
+    position: absolute;
+    top: 53%;
+    left: 10%;
+    width: 80%;
+    height: 14%;
+    border-radius: 20px;
+    background-color: rgb(42, 34, 34);
+}
+
+.Register-Form-Password-Container label{
+    position:absolute;
+    top:5%;
+    width:100%;
+    font-size:110%;
+    color:whitesmoke;
+    text-align:center;
+}
+
+.Register-Form-Password-Container input{
+    position:absolute;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:30%;
+}
+
+.Register-Form-ConfirmPassword-Container {
+    position: absolute;
+    top: 72%;
+    left: 10%;
+    width: 80%;
+    height: 14%;
+    border-radius: 20px;
+    background-color: rgb(42, 34, 34);
+}
+
+.Register-Form-ConfirmPassword-Container label{
+    position:absolute;
+    top:5%;
+    width:100%;
+    font-size:110%;
+    color:whitesmoke;
+    text-align:center;
+}
+
+.Register-Form-ConfirmPassword-Container input{
+    position:absolute;
+    top:40%;
+    left:10%;
+    width:80%;
+    height:30%;
+}
+
+.Register-Form-Btn-Container{
+    position:absolute;
+    bottom:0.4em;
+    right:0;
+    width:9em;
+    height:6%;
+    display:flex;
+    gap:1em;
+}
+
+.Register-Form-Btn-Container button{
+    bottom:3%;
+    right:3%;
+    padding:0.2em;
+    border-radius:5px;
+    background-color:rgb(209, 209, 209);
+}
+
+.Register-Form-Btn-Container a{
+    bottom:3%;
+    right:3%;
+    padding:0.2em;
+    padding-top:0.6em;
+    border-radius:5px;
+    color:black;
+    background-color:rgb(209, 209, 209);
+    text-decoration:none;
+}
+
+.AccessDeniedContainer{
+    position:relative;
+    top:10vh;
+    left:25vw;
+    width:50vw;
+    height:50vh;
+    box-shadow:rgb(31, 30, 27) 6px 3px 6px 6px;
+    color:whitesmoke;
+    background-color:rgb(53, 51, 51);
+}
+
+.AccessDeniedContainer label{
+    position:absolute;
+    top:15%;
+    width:100%;
+    text-align:center;
+    font-size:120%;
+}
+
+.AccessDeniedContainer h2{
+    text-align:center;
+}
+
+.AccessDeniedContainer h3{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+}
+
+.AccessDenied-Btn{
+    position:absolute;
+    bottom:5%;
+    width:100%;
+    display:flex;
+    gap:1em;
+    justify-content:center;
+}
+
+.AccessDenied-Btn a{
+    display:block;
+    padding:0.5em;
+    text-decoration:none;
+    text-align:center;
+    border: 2px solid black;
+    color:white;
+    background-color:rgb(31, 30, 27);
+}
+
+.AccessDenied-Btn a:hover{
+    background-color:rgb(75, 71, 71);
 }

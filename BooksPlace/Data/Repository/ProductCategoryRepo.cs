@@ -20,5 +20,10 @@ namespace BooksPlace.Data.Repository
         {
             return BooksPlaceDbContext.ProductCategories.FirstOrDefault(p => p.ProductCategoryId == CategoryId);
         }
+
+        public IEnumerable<ProductCategory> GetCategories()
+        {
+            return BooksPlaceDbContext.ProductCategories;
+        }
     }
 }

@@ -53,13 +53,20 @@ namespace BooksPlace
 
             }).AddEntityFrameworkStores<BooksPlaceDbContext>();
 
+            services.AddAuthorization(options => {
+
+                options.AddPolicy("AdminControllerAuthPolicy", policyBuilder => {
+
+                    policyBuilder.RequireRole(new string[] { "Admin", "Staff" });
+                });
+            
+            });
+
             services.ConfigureApplicationCookie(options => {
 
                 options.Cookie.Name = "UserAuthCookie";
                 options.LoginPath = "/Login/SignIn";
-                options.LogoutPath = "";
-                options.AccessDeniedPath = "/Login/AccessDenied";
-            
+                options.AccessDeniedPath = "/AccessDenied/AccessDenied";     
             });
 
             services.AddRepository();

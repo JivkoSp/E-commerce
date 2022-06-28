@@ -14,6 +14,7 @@
             <input id="search" name="ProductName" type="text" placeholder="Search some books..." />
         </form>       
         <vc:cart-information />
+        <button id="LogOutBtn" class="Navbar-LogOut">Log out</button>
     </div>
     <div class="Navigation-Menu-Container">
         <p>Book <br /> categories</p>
@@ -45,6 +46,23 @@
                 select: function (e, i) {
                     $("#search").val(i.item.val);
                 }
+            });
+
+            $("#LogOutBtn").click(() => {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Login/SignIn?handler=LogOut',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: {},
+                    success: () => {
+                        window.location.replace("/Login/SignIn");
+                    },
+                    fail: (response) => { console.log(response); },
+                    error: (response) => { console.log(response);}
+                });
             });
         });
 
